@@ -28,8 +28,13 @@
         self.anchorPoint = ccp(0.5,1);
         if (screenHight == 1024) {
             self.position = ccp(768/4,screenHight/2);
-        }else  self.position = ccp(768/4,screenHight);
-    }
+            CCLOG(@"is ipad");
+        }else{
+            self.position = ccp(768/4,screenHight);
+            CCLOG(@"isn't ipad");
+        }
+        CCLOG(@"self.position = %f%f",self.position.x,self.position.y);
+    }else if(screenHight>480){ self.scaleY = 1.15;}
     CCLOG(@"screenHight = %f",screenHight);
     _ATeam.textField.keyboardType=UIKeyboardTypeDecimalPad;
     _BTeam.textField.keyboardType=UIKeyboardTypeDecimalPad;
@@ -133,34 +138,37 @@
 
 -(void) selectMN: (id)sender
 {
-    [self.userObject runAnimationsForSequenceNamed:@"SelectMN"];
+    if (!(_buttomLine.position.y<0.2)&& ![[self.userObject runningSequenceName]isEqualToString:@"SelectMN"]) {
+        CCLOG(@"%f",_buttomLine.position.y);
+        [self.userObject runAnimationsForSequenceNamed:@"SelectMN"];
     
-    switch ([_countCount.string intValue]) {
-        case 2:
-            [self selectMNButton:YES :YES :NO :NO :NO :NO];
-            break;
-        case 3:
-            [self selectMNButton:YES :YES :YES :NO :NO :NO];
-            break;
-        case 4:
-            [self selectMNButton:YES :YES :YES :YES :NO :NO];
-            break;
-        case 5:
-            [self selectMNButton:YES :YES :YES :YES :YES :NO];
-            break;
-        case 6:
-            [self selectMNButton:YES :YES :YES :YES :YES :YES];
-            break;
-        default:
-            [self selectMNButton:NO :NO :NO :NO :NO :NO];
-            break;
+        switch ([_countCount.string intValue]) {
+            case 2:
+                [self selectMNButton:YES :YES :NO :NO :NO :NO];
+                break;
+            case 3:
+                [self selectMNButton:YES :YES :YES :NO :NO :NO];
+                break;
+            case 4:
+                [self selectMNButton:YES :YES :YES :YES :NO :NO];
+                break;
+            case 5:
+                [self selectMNButton:YES :YES :YES :YES :YES :NO];
+                break;
+            case 6:
+                [self selectMNButton:YES :YES :YES :YES :YES :YES];
+                break;
+            default:
+            //    [self selectMNButton:NO :NO :NO :NO :NO :NO];
+                break;
+        }
     }
-    
 }
 
 
 -(void) qSelectMN :(id) sender
 {
+    if (!_MBG.position.x<300 ) {
     [self.userObject runAnimationsForSequenceNamed:@"QSelectMN"];
     int nNumber;
     switch ([_countTeam.string intValue]) {
@@ -188,7 +196,7 @@
         default:
             break;
     }
-
+    }
 }
 
 
@@ -501,7 +509,7 @@
 -(void) countStart: (id)sender
 {
     float a = [self counting];
-    _getLottery.string = [NSString stringWithFormat:@"%f",a];
+    _getLottery.string = [NSString stringWithFormat:@"%.2f",a];
     NSLog(@"%f",a);
 }
 
@@ -539,7 +547,7 @@
     }
     m = [_countTeam.string intValue];
     n = [_countCount.string intValue];
-    money = [_lottery.string intValue];
+    money = [_lottery.string intValue] * 10;
     
   //  int GetMoney;
 
@@ -780,59 +788,123 @@
 
 
 #pragma gameNil
--(void) setTextfield :(CCTextField * )team :(float) temp :(CCNode *) blockBG
-{
-    if (blockBG.visible) {
-        team.textField.text = [NSString stringWithFormat:@"%.2f",temp ];
-        blockBG.visible = NO;
-        team.enabled = YES;
-        CCLOG(@"textfield unlock %f",temp);
-    }else{
-        temp = [team.textField.text floatValue];
-        team.textField.text = @"0";
-        blockBG.visible = YES;
-        team.enabled = NO;
-        CCLOG(@"textfield lock %f,",temp);
-    }
-}
+
 -(void) gameOneNil :(id)sender
 {
     if (_ATeam.visible) {
-        [self setTextfield:_ATeam :oneTemp :_aBlockBG];
+        if (_aBlockBG.visible) {
+            _ATeam.textField.text = [NSString stringWithFormat:@"%.2f",oneTemp];
+            _aBlockBG.visible = NO;
+            _ATeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",oneTemp);
+        }else{
+            oneTemp = [_ATeam.textField.text floatValue];
+            _ATeam.textField.text = @"0";
+            _aBlockBG.visible = YES;
+            _ATeam.enabled = NO;
+            CCLOG(@"textfield lock %f,",oneTemp);
+        }
     }
 }
 -(void) gameTwoNil :(id)sender
 {
     if (_BTeam.visible) {
-        [self setTextfield:_BTeam :twoTemp :_bBlockBG];
+        if (_bBlockBG.visible) {
+            _BTeam.textField.text = [NSString stringWithFormat:@"%.2f",twoTemp];
+            _bBlockBG.visible = NO;
+            _ATeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",twoTemp);
+        }else{
+            twoTemp = [_BTeam.textField.text floatValue];
+            _BTeam.textField.text = @"0";
+            _bBlockBG.visible = YES;
+            _BTeam.enabled = NO;
+            CCLOG(@"textfield lock %f,",twoTemp);
+        }
     }
 }
 -(void) gameThreeNil :(id)sender
 {
     if (_CTeam.visible) {
-        [self setTextfield:_CTeam :threeTemp :_cBlockBG];
-    }
+        if (_cBlockBG.visible) {
+            _CTeam.textField.text = [NSString stringWithFormat:@"%.2f",threeTemp];
+            _cBlockBG.visible = NO;
+            _CTeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",threeTemp);
+        }else{
+            threeTemp = [_CTeam.textField.text floatValue];
+            _CTeam.textField.text = @"0";
+            _cBlockBG.visible = YES;
+            _CTeam.enabled = NO;
+            CCLOG(@"textfield lock %f,",threeTemp);
+        }    }
 }
 -(void) gameFourNil :(id)sender
 {
     if (_DTeam.visible) {
-        [self setTextfield:_DTeam :fourTemp :_dBlockBG];
-    }
+        if (_dBlockBG.visible) {
+            _DTeam.textField.text = [NSString stringWithFormat:@"%.2f",fourTemp];
+            _dBlockBG.visible = NO;
+            _DTeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",fourTemp);
+        }else{
+            fourTemp = [_DTeam.textField.text floatValue];
+            _DTeam.textField.text = @"0";
+            _dBlockBG.visible = YES;
+            _DTeam.enabled = NO;
+            CCLOG(@"textfield lock %f,",fourTemp);
+        }    }
 }
 -(void) gameFiveNil :(id)sender
 {
     if (_ETeam.visible) {
-        [self setTextfield:_ETeam :fiveTemp :_eBlockBG];
-    }
+        if (_eBlockBG.visible) {
+            _ETeam.textField.text = [NSString stringWithFormat:@"%.2f",fiveTemp];
+            _eBlockBG.visible = NO;
+            _ETeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",fiveTemp);
+        }else{
+            fiveTemp = [_ETeam.textField.text floatValue];
+            _ETeam.textField.text = @"0";
+            _eBlockBG.visible = YES;
+            _ETeam.enabled = NO;
+            CCLOG(@"textfield lock %f,",fiveTemp);
+        }    }
 }
 -(void) gameSixNil :(id)sender
 {
     if (_FTeam.visible ) {
-        [self setTextfield:_FTeam :sixTemp :_fBlockBG];
-    }
+        if (_fBlockBG.visible) {
+            _FTeam.textField.text = [NSString stringWithFormat:@"%.2f",sixTemp];
+            _fBlockBG.visible = NO;
+            _FTeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",sixTemp);
+        }else{
+            sixTemp = [_FTeam.textField.text floatValue];
+            _FTeam.textField.text = @"0";
+            _fBlockBG.visible = YES;
+            _FTeam.enabled = NO;
+            CCLOG(@"textfield lock %f,",sixTemp);
+        }    }
 }
 
+#pragma createWeb
+-(void) isLinkToWeb
+{
+    [self removeAd];
+    [[CCDirector sharedDirector] pushScene:[CCBReader loadAsScene:@"WebScene"] withTransition:[CCTransition transitionCrossFadeWithDuration:0.2f]];
+}
 
+-(void) developer
+{
+    _datailScrollView.horizontalPage = 1;
+}
+
+-(void) useDetail
+{
+    _datailScrollView.horizontalPage = 2;
+}
+#pragma aboutADMOB
 
 
 -(void) createAd
@@ -841,7 +913,11 @@
     [appDelegate performSelector:@selector(createAdmobAds) withObject:nil];
 }
 
-
+-(void) removeAd
+{
+    AppController * appDelegate = (AppController * )[[UIApplication sharedApplication]delegate];
+    [appDelegate performSelector:@selector(hideBannerView) withObject:nil];
+}
 -(void) BlockBB: (id) sender
 {
     CCLOG(@"block");

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F09C9BE19D05035003A6617 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09C9BD19D05035003A6617 /* EventKit.framework */; };
 		1F09C9C119D0503D003A6617 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09C9C019D0503D003A6617 /* EventKitUI.framework */; };
+		1F09C9CA19D2A7BA003A6617 /* WebScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F09C9C919D2A7BA003A6617 /* WebScene.m */; };
 		1F414D1E199B61FC001E2171 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F414D1D199B61FC001E2171 /* AdSupport.framework */; };
 		1F414D20199B6227001E2171 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F414D1F199B6227001E2171 /* MessageUI.framework */; };
 		1F414D22199B6231001E2171 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F414D21199B6231001E2171 /* StoreKit.framework */; };
@@ -67,6 +68,8 @@
 /* Begin PBXFileReference section */
 		1F09C9BD19D05035003A6617 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		1F09C9C019D0503D003A6617 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		1F09C9C819D2A7BA003A6617 /* WebScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebScene.h; path = Source/WebScene.h; sourceTree = "<group>"; };
+		1F09C9C919D2A7BA003A6617 /* WebScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebScene.m; path = Source/WebScene.m; sourceTree = "<group>"; };
 		1F414D1D199B61FC001E2171 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		1F414D1F199B6227001E2171 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		1F414D21199B6231001E2171 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -188,6 +191,8 @@
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				B7378992180767190076A88C /* MainScene.h */,
 				B7378993180767190076A88C /* MainScene.m */,
+				1F09C9C819D2A7BA003A6617 /* WebScene.h */,
+				1F09C9C919D2A7BA003A6617 /* WebScene.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -314,7 +319,7 @@
 		B77F1B2617B978D7009739AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Apportable;
 				TargetAttributes = {
 					B77F1B2D17B978D7009739AE = {
@@ -409,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
+				1F09C9CA19D2A7BA003A6617 /* WebScene.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 			);
@@ -433,8 +439,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -464,8 +472,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,

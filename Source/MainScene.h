@@ -6,6 +6,11 @@
 //  Copyright (c) 2013 Apportable. All rights reserved.
 //
 
+
+
+
+
+
 #import "CCNode.h"
 #import "GADBannerView.h"
 #import "AppDelegate.h"
@@ -56,7 +61,7 @@
     int tutorialInt;
     CCLabelTTF * _next;
     
-    
+    CCNode * _buttomLine;
     CCButton * _selectMN;
     CCButton * _singleButton;
     CCButton * _twoButton;
@@ -96,9 +101,10 @@
     float fourTemp;
     float fiveTemp;
     float sixTemp;
+    
+    CCScrollView * _datailScrollView;
 }
 
 @property (nonatomic,strong) NSMutableArray * teamArray;
-
 
 @end
