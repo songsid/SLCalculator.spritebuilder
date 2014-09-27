@@ -19,7 +19,9 @@
 
 -(void) didLoadFromCCB
 {
+    
     self.userInteractionEnabled = YES;
+    
     //initial setting
     float screenHight = [UIScreen mainScreen].bounds.size.height;
     self.position = ccp(160,screenHight);
@@ -34,7 +36,7 @@
             CCLOG(@"isn't ipad");
         }
         CCLOG(@"self.position = %f%f",self.position.x,self.position.y);
-    }else if(screenHight>480){ self.scaleY = 1.15;}
+    }//else if(screenHight>480){ self.scaleY = 1.15;}
     CCLOG(@"screenHight = %f",screenHight);
     _ATeam.textField.keyboardType=UIKeyboardTypeDecimalPad;
     _BTeam.textField.keyboardType=UIKeyboardTypeDecimalPad;
@@ -42,6 +44,9 @@
     _DTeam.textField.keyboardType=UIKeyboardTypeDecimalPad;
     _ETeam.textField.keyboardType=UIKeyboardTypeDecimalPad;
     _FTeam.textField.keyboardType=UIKeyboardTypeDecimalPad;
+    _GTeam.textField.keyboardType = UIKeyboardTypeDecimalPad;
+    _HTeam.textField.keyboardType = UIKeyboardTypeDecimalPad;
+    
     
     _countTeam.textField.keyboardType=UIKeyboardTypeNumberPad;
     _countCount.textField.keyboardType=UIKeyboardTypeNumberPad;
@@ -55,6 +60,8 @@
     _DTeam.visible = NO;
     _ETeam.visible = NO;
     _FTeam.visible = NO;
+    _GTeam.visible = NO;
+    _HTeam.visible = NO;
     
     
     
@@ -68,6 +75,9 @@
         _DTeam.visible = YES;
         _ETeam.visible = YES;
         _FTeam.visible = YES;
+        _HTeam.visible = YES;
+        _GTeam.visible = YES;
+        
         
         [self blockTextField:NO];
         _howToUseButton.enabled = NO;
@@ -120,6 +130,8 @@
                 _DTeam.visible = NO;
                 _ETeam.visible = NO;
                 _FTeam.visible = NO;
+                _GTeam.visible = NO;
+                _HTeam.visible = NO;
                 _countStartButton.enabled = YES;
                 _howToUseButton.enabled = YES;
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Tutorial"];
@@ -141,30 +153,45 @@
     if (!(_buttomLine.position.y<0.2)&& ![[self.userObject runningSequenceName]isEqualToString:@"SelectMN"]) {
         CCLOG(@"%f",_buttomLine.position.y);
         [self.userObject runAnimationsForSequenceNamed:@"SelectMN"];
-    
-        switch ([_countCount.string intValue]) {
-            case 2:
-                [self selectMNButton:YES :YES :NO :NO :NO :NO];
-                break;
-            case 3:
-                [self selectMNButton:YES :YES :YES :NO :NO :NO];
-                break;
-            case 4:
-                [self selectMNButton:YES :YES :YES :YES :NO :NO];
-                break;
-            case 5:
-                [self selectMNButton:YES :YES :YES :YES :YES :NO];
-                break;
-            case 6:
-                [self selectMNButton:YES :YES :YES :YES :YES :YES];
-                break;
-            default:
-            //    [self selectMNButton:NO :NO :NO :NO :NO :NO];
-                break;
-        }
+        [self scheduleBlock:^(CCTimer *timer) {
+            [self showGameButton];
+        } delay:1.0f];
     }
 }
 
+-(void) showGameButton
+{
+    switch ([_countTeam.string intValue]) {
+        case 0:
+             [self selectMNButton:NO :NO :NO :NO :NO :NO :NO :NO];
+            break;
+        case 2:
+            [self selectMNButton:YES :YES :NO :NO :NO :NO :NO :NO];
+            break;
+        case 3:
+            [self selectMNButton:YES :YES :YES :NO :NO :NO :NO :NO];
+            break;
+        case 4:
+            [self selectMNButton:YES :YES :YES :YES :NO :NO :NO :NO];
+            break;
+        case 5:
+            [self selectMNButton:YES :YES :YES :YES :YES :NO :NO :NO];
+            break;
+        case 6:
+            [self selectMNButton:YES :YES :YES :YES :YES :YES :NO :NO];
+            break;
+        case 7:
+            [self selectMNButton:YES :YES :YES :YES :YES :YES :YES :NO];
+            break;
+        case 8:
+            [self selectMNButton:YES :YES :YES :YES :YES :YES :YES :YES];
+            break;
+        default:
+           // [self selectMNButton:NO :NO :NO :NO :NO :NO :NO :NO];
+            break;
+    }
+
+}
 
 -(void) qSelectMN :(id) sender
 {
@@ -192,7 +219,16 @@
             nNumber  = 6*Bsingle +15*Btwo +20*Bthree + 15*Bfour +6*Bfive + 1 * Bsix;
             _selectMN.title = [NSString stringWithFormat:@"6×%d",nNumber];
             break;
-            
+        case 7:
+            nNumber = 7*Bsingle + 21*Btwo + 35 * Bthree + 35 * Bfour + 21*Bfive+ 7 * Bsix + 1 * Bseven;
+            _selectMN.title = [NSString stringWithFormat:@"7×%d",nNumber];
+
+            break;
+        case 8:
+            nNumber = 8 * Bsingle + 28 * Btwo + 56 * Bthree + 70 * Bfour + 56 * Bfive + 28 * Bsix + 8 * Bseven + 1 * Beight;
+            _selectMN.title = [NSString stringWithFormat:@"8×%d",nNumber];
+
+            break;
         default:
             break;
     }
@@ -212,7 +248,7 @@
 
     
 }
--(void) selectMNButton :(BOOL)one :(BOOL)two :(BOOL)three : (BOOL)four :(BOOL)five :(BOOL)six
+-(void) selectMNButton :(BOOL)one :(BOOL)two :(BOOL)three : (BOOL)four :(BOOL)five :(BOOL)six :(BOOL)seven : (BOOL) eight
 {
     CCLOG(@"selectMNButton");
     _singleButton.visible = one;
@@ -221,6 +257,8 @@
     _fourButton.visible = four;
     _fiveButton.visible = five;
     _sixButton.visible = six;
+    _sevenButton.visible = seven;
+    _eightButton.visible = eight;
     
 }
 -(void) isSelectN :(id) sender
@@ -243,6 +281,8 @@
     [_DTeam setEnabled:block];
     [_ETeam setEnabled:block];
     [_FTeam setEnabled:block];
+    [_GTeam setEnabled:block];
+    [_HTeam setEnabled:block];
   }
 
 -(void) M2 : (id) sender
@@ -262,6 +302,8 @@
     _DTeam.visible = NO;
     _ETeam.visible = NO;
     _FTeam.visible = NO;
+    _GTeam.visible = NO;
+    _HTeam.visible = NO;
     [self BGgoOut];
 
 }
@@ -282,6 +324,8 @@
     _DTeam.visible = NO;
     _ETeam.visible = NO;
     _FTeam.visible = NO;
+    _GTeam.visible = NO;
+    _HTeam.visible = NO;
     [self BGgoOut];
 
 }
@@ -302,6 +346,8 @@
     _DTeam.visible = YES;
     _ETeam.visible = NO;
     _FTeam.visible = NO;
+    _GTeam.visible = NO;
+    _HTeam.visible = NO;
     [self BGgoOut];
 
 }
@@ -323,6 +369,8 @@
     _DTeam.visible = YES;
     _ETeam.visible = YES;
     _FTeam.visible = NO;
+    _GTeam.visible = NO;
+    _HTeam.visible = NO;
     [self BGgoOut];
 
 }
@@ -344,10 +392,58 @@
     _DTeam.visible = YES;
     _ETeam.visible = YES;
     _FTeam.visible = YES;
+    _GTeam.visible = NO;
+    _HTeam.visible = NO;
     [self BGgoOut];
 
 }
-
+-(void) M7 : (id) sender
+{
+    _countTeam.string =@"7";
+    _selecetMButton.title = _countTeam.string;
+    _N2.visible = NO;
+    _N3.visible = NO;
+    _N4.visible = NO;
+    _N5.visible = NO;
+    _N61.visible = YES;
+    _N62.visible = YES;
+    
+    
+    _ATeam.visible = YES;
+    _BTeam.visible = YES;
+    _CTeam.visible = YES;
+    _DTeam.visible = YES;
+    _ETeam.visible = YES;
+    _FTeam.visible = YES;
+    _GTeam.visible = YES;
+    _HTeam.visible = NO;
+    [self BGgoOut];
+    
+}
+-(void) M8 : (id) sender
+{
+    _countTeam.string =@"8";
+    _selecetMButton.title = _countTeam.string;
+    _N2.visible = NO;
+    _N3.visible = NO;
+    _N4.visible = NO;
+    _N5.visible = NO;
+    _N61.visible = YES;
+    _N62.visible = YES;
+    
+    
+    _ATeam.visible = YES;
+    _BTeam.visible = YES;
+    _CTeam.visible = YES;
+    _DTeam.visible = YES;
+    _ETeam.visible = YES;
+    _FTeam.visible = YES;
+    _GTeam.visible = YES;
+    _HTeam.visible = YES;
+    [self BGgoOut];
+    
+}
+/*
 -(void) N1: (id) sender
 {
     [self BGgoOut];
@@ -464,7 +560,7 @@
     _countCount.string = @"57";
     _selecetNButton.title = _countCount.string;
 }
-
+*/
 
 -(void) BGgoOut
 {
@@ -477,25 +573,34 @@
     [_DTeam setEnabled:YES];
     [_ETeam setEnabled:YES];
     [_FTeam setEnabled:YES];
+    [_GTeam setEnabled:YES];
+    [_HTeam setEnabled:YES];
+    
     
     switch ([_countTeam.string intValue]) {
         case 2:
-            [self selectMNButton:YES :YES :NO :NO :NO :NO];
+            [self selectMNButton:YES :YES :NO :NO :NO :NO :NO :NO];
             break;
         case 3:
-            [self selectMNButton:YES :YES :YES :NO :NO :NO];
+            [self selectMNButton:YES :YES :YES :NO :NO :NO :NO :NO];
             break;
         case 4:
-            [self selectMNButton:YES :YES :YES :YES :NO :NO];
+            [self selectMNButton:YES :YES :YES :YES :NO :NO :NO :NO];
             break;
         case 5:
-            [self selectMNButton:YES :YES :YES :YES :YES :NO];
+            [self selectMNButton:YES :YES :YES :YES :YES :NO :NO :NO];
             break;
         case 6:
-            [self selectMNButton:YES :YES :YES :YES :YES :YES];
+            [self selectMNButton:YES :YES :YES :YES :YES :YES :NO :NO];
+            break;
+        case 7:
+            [self selectMNButton:YES :YES :YES :YES :YES :YES :YES :NO];
+            break;
+        case 8:
+            [self selectMNButton:YES :YES :YES :YES :YES :YES :YES :YES];
             break;
         default:
-            [self selectMNButton:NO :NO :NO :NO :NO :NO];
+            [self selectMNButton:NO :NO :NO :NO :NO :NO :NO :NO];
             break;
     }
 }
@@ -511,6 +616,7 @@
     float a = [self counting];
     _getLottery.string = [NSString stringWithFormat:@"%.2f",a];
     NSLog(@"%f",a);
+    [self sevenPassFour];
 }
 
 
@@ -545,6 +651,12 @@
         ft = [_FTeam.string floatValue];
       //  [self.teamArray addObject:ft];
     }
+    if (_GTeam.string) {
+        gt = [_GTeam.string floatValue];
+    }
+    if (_HTeam.string) {
+        ht = [_HTeam.string floatValue];
+    }
     m = [_countTeam.string intValue];
     n = [_countCount.string intValue];
     money = [_lottery.string intValue] * 10;
@@ -568,6 +680,11 @@
         case 6:
             return [self sixPass] * Bsingle + [self sixPassTwo]*Btwo + [self sixPassThree] * Bthree + [self sixPassFour] * Bfour + [self sixPassFive] * Bfive + [self sixPassSix] * Bsix;
             break;
+        case 7:
+            return [self sevenPass] * Bsingle + [self sevenPassTwo]*Btwo + [self sevenPassThree] * Bthree + [self sevenPassFour] * Bfour + [self sevenPassFive] * Bfive + [self sevenPassSix] * Bsix + [self sevenPassSeven] * Bseven ;
+            break;
+        case 8:
+            return [self eightPass] * Bsingle + [self eightPassTwo]* Btwo + [self eightPassThree] * Bthree + [self eightPassFour] * Bfour + [self eightPassFive] * Bfive + [self eightPassSix] * Bsix + [self eightPassSeven] * Bseven + [self eightPassEight] * Beight;
             
         default:
             break;
@@ -581,43 +698,56 @@
 -(void) singleCount
 {
     if (!Bsingle) {
-        _singleButton.title = @"✔︎";
+        _singleButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(122, 122, 122)];
         Bsingle = YES;
+        _ccp1.visible = YES;
     }else {
-        _singleButton.title = @" ";
+        _singleButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(255, 122, 0)];
         Bsingle = NO;
+        _ccp1.visible = NO;
+        
     }
 }
 
 -(void) twoCount
 {
     if (!Btwo) {
-        _twoButton.title = @"✔︎";
+        _twoButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(122, 122, 122)];
         Btwo = YES;
+        _ccp2.visible = YES;
+
     }else {
-        _twoButton.title = @" ";
+        _twoButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(255, 122, 0)];
         Btwo = NO;
+        _ccp2.visible = NO;
+
     }
 }
 -(void) threeCount
 {
     if (!Bthree) {
-        _threeButton.title = @"✔︎";
+        _threeButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(122, 122, 122)];
+   _ccp3.visible = YES;
         Bthree = YES;
     }else {
-        _threeButton.title = @" ";
+        _threeButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(255, 122, 0)];
         Bthree = NO;
+        _ccp3.visible = NO;
+
     }
 }
 
 -(void) fourCount
 {
     if (!Bfour) {
-        _fourButton.title = @"✔︎";
+        _fourButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(122, 122, 122)];
+        _ccp4.visible = YES;
         Bfour = YES;
     }else {
-        _fourButton.title = @" ";
+        _fourButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(255, 122, 0)];
         Bfour = NO;
+        _ccp4.visible = NO;
+
     }
 
 }
@@ -625,51 +755,63 @@
 -(void) fiveCount
 {
     if (!Bfive) {
-        _fiveButton.title = @"✔︎";
+        _fiveButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(122, 122, 122)];
+        _ccp5.visible = YES;
         Bfive = YES;
     }else {
-        _fiveButton.title = @" ";
+        _fiveButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(255, 122, 0)];
         Bfive = NO;
+        _ccp5.visible = NO;
+
     }
 }
 
 -(void) sixCount
 {
     if (!Bsix) {
-        _sixButton.title = @"✔︎";
+        _sixButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(122, 122, 122)];
+        _ccp6.visible = YES;
         Bsix = YES;
     }else {
-        _sixButton.title = @" ";
+        _sixButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(255, 122, 0)];
         Bsix = NO;
+        _ccp6.visible = NO;
+
+    }
+}
+
+-(void) sevenCount
+{
+    if (!Bseven) {
+        _sevenButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(122, 122, 122)];
+        _ccp7.visible = YES;
+        Bseven = YES;
+    }else{
+        _sevenButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(255, 122, 0)];
+        Bseven = NO;
+        _ccp7.visible = NO;
+
+    }
+    
+}
+
+-(void) eightCount
+{
+
+    if (!Beight) {
+        _eightButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(122, 122, 122)];
+        _ccp8.visible = YES;
+        Beight = YES;
+    }else{
+        _eightButton.label.fontColor = [CCColor colorWithCcColor3b:ccc3(255, 122, 0)];
+        Beight= NO;
+        _ccp8.visible = NO;
+
     }
 }
 
 
 #pragma countFunc
-
--(void) countFunction
-{
-    switch ([_countCount.string intValue]) {
-        case 2:
-            
-            break;
-        case 3:
-            
-            break;
-        case 4:
-            
-            break;
-        case 5:
-            
-            break;
-        case 6:
-            
-            break;
-            
-        default:
-            break;
-    }
-}
 
 -(float) twoPass //單場
 {
@@ -764,9 +906,248 @@
     return at * bt * ct * dt * et * ft * money;
 
 }
+-(float) sevenPass
+{
+    return (at + bt + ct + dt + et + ft + gt)*money;
+}
+-(float) sevenPassTwo
+{
+    return at * bt * money + at * ct * money + at * dt * money +at * et * money +at *ft * money + at * gt * money + bt * ct * money + bt * dt * money + bt * et * money + bt * ft * money + bt * gt * money + ct * dt * money +ct * et * money + ct * ft * money + ct * gt * money + dt * et * money + dt * ft * money +dt * gt * money + et * ft * money + et * gt * money + ft * gt * money;
+}
+-(float) sevenPassThree
+{
+    return at * bt * ct * money + at * bt * dt * money + at * bt *et * money + at * bt * ft * money + at * bt * gt * money + at * ct * dt * money + at * ct * et * money + at * ct * ft * money + at * ct * gt * money + at * dt * et * money + at * dt * ft * money + at * dt * gt * money + at * et * ft * money + at * et * gt * money + at * ft * gt * money + bt * ct * dt * money + bt * ct * et * money + bt * ct * ft * money + bt * ct * gt * money + bt * dt * et * money + bt * dt * ft * money + bt * dt * gt * money + bt * et * ft * money + bt * et * gt * money + bt * ft * gt * money + ct * dt * et * money + ct * dt * ft * money + ct * dt * gt * money + ct * et * ft * money + ct * et * gt * money + ct * ft * gt * money + dt * et * ft * money + dt * et * gt * money + dt * ft * gt * money + et * ft * gt * money;
+}
+-(float) sevenPassFour
+{
+    NSNumber * oneGame = [NSNumber numberWithFloat:at];
+    NSNumber * twoGame = [NSNumber numberWithFloat:bt];
+    NSNumber * threeGame = [NSNumber numberWithFloat:ct];
+    NSNumber * fourGame = [NSNumber numberWithFloat:dt];
+    NSNumber * fiveGame = [NSNumber numberWithFloat:et];
+    NSNumber * sixGame = [NSNumber numberWithFloat:ft];
+    NSNumber * sevenGame = [NSNumber numberWithFloat:gt];
+    NSArray * gameRate = [[NSArray alloc]initWithObjects:oneGame,twoGame,threeGame,fourGame,fiveGame,sixGame,sevenGame, nil];
+    float countTotal = 0;
+    
+    for (NSInteger i=0; i<([gameRate count]-3); i++) {
+        for (NSInteger j=i+1; j<([gameRate count]-2); j++) {
+            for (NSInteger k=j+1; k<([gameRate count]-1); k++) {
+                for (NSInteger l=k+1; l<[gameRate count]; l++) {
+                    countTotal = countTotal + [gameRate[i] floatValue] * [gameRate[j] floatValue] * [gameRate[k] floatValue] * [gameRate[l] floatValue];
+                    CCLOG(@"counttotal = %.2f",countTotal);
+                }
+            }
+        }
+    }
+    
+    
+    return countTotal * money;
+}
 
+-(float) sevenPassFive
+{
+    NSNumber * oneGame = [NSNumber numberWithFloat:at];
+    NSNumber * twoGame = [NSNumber numberWithFloat:bt];
+    NSNumber * threeGame = [NSNumber numberWithFloat:ct];
+    NSNumber * fourGame = [NSNumber numberWithFloat:dt];
+    NSNumber * fiveGame = [NSNumber numberWithFloat:et];
+    NSNumber * sixGame = [NSNumber numberWithFloat:ft];
+    NSNumber * sevenGame = [NSNumber numberWithFloat:gt];
+    NSArray * gameRate = [[NSArray alloc]initWithObjects:oneGame,twoGame,threeGame,fourGame,fiveGame,sixGame,sevenGame, nil];
+    float countTotal = 0;
+    
+    for (NSInteger i=0; i<([gameRate count]-4); i++) {
+        for (NSInteger j=i+1; j<([gameRate count]-3); j++) {
+            for (NSInteger k=j+1; k<([gameRate count]-2); k++) {
+                for (NSInteger l=k+1; l<([gameRate count]-1); l++) {
+                    for (NSInteger r=l+1; r<[gameRate count]; r++) {
+                        countTotal = countTotal + [gameRate[i] floatValue] * [gameRate[j] floatValue] * [gameRate[k] floatValue] * [gameRate[l] floatValue] * [gameRate[r] floatValue];
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    return countTotal * money;
+}
+-(float) sevenPassSix
+{
+    return at * bt * ct * dt * et * ft * money + at * bt * ct * dt * et * gt * money + at * bt * ct * dt * ft * gt * money + at * bt * ct * et * ft * gt * money + at * bt * dt * et * ft * gt * money + at * ct * dt * et * ft * gt * money + bt * ct * dt * et * ft * gt * money ;
+}
+-(float) sevenPassSeven
+{
+    return at * bt * ct * dt * et * ft * gt * money;
+}
 
+-(float) eightPass
+{
+    return (at + bt + ct + dt + et + ft + gt + ht) * money;
+}
+-(float) eightPassTwo //problem
+{
+    NSNumber * oneGame = [NSNumber numberWithFloat:at];
+    NSNumber * twoGame = [NSNumber numberWithFloat:bt];
+    NSNumber * threeGame = [NSNumber numberWithFloat:ct];
+    NSNumber * fourGame = [NSNumber numberWithFloat:dt];
+    NSNumber * fiveGame = [NSNumber numberWithFloat:et];
+    NSNumber * sixGame = [NSNumber numberWithFloat:ft];
+    NSNumber * sevenGame = [NSNumber numberWithFloat:gt];
+    NSNumber * eightGame = [NSNumber numberWithFloat:ht];
+    NSArray * gameRate = [[NSArray alloc]initWithObjects:oneGame,twoGame,threeGame,fourGame,fiveGame,sixGame,sevenGame,eightGame, nil];
+    float countTotal = 0;
+    
+    for (NSInteger i=0; i<([gameRate count]-1); i++) {
+        for (NSInteger j=i+1; j<([gameRate count]); j++) {
+            countTotal = countTotal + [gameRate[i] floatValue] * [gameRate[j] floatValue] ;
+        }
+    }
+    CCLOG(@"8場過兩關= %.2f",countTotal);
+    
+    return countTotal * money;
+}
+-(float) eightPassThree
+{
+    NSNumber * oneGame = [NSNumber numberWithFloat:at];
+    NSNumber * twoGame = [NSNumber numberWithFloat:bt];
+    NSNumber * threeGame = [NSNumber numberWithFloat:ct];
+    NSNumber * fourGame = [NSNumber numberWithFloat:dt];
+    NSNumber * fiveGame = [NSNumber numberWithFloat:et];
+    NSNumber * sixGame = [NSNumber numberWithFloat:ft];
+    NSNumber * sevenGame = [NSNumber numberWithFloat:gt];
+    NSNumber * eightGame = [NSNumber numberWithFloat:ht];
+    NSArray * gameRate = [[NSArray alloc]initWithObjects:oneGame,twoGame,threeGame,fourGame,fiveGame,sixGame,sevenGame,eightGame, nil];
+    float countTotal = 0;
+    
+    for (NSInteger i=0; i<([gameRate count]-2); i++) {
+        for (NSInteger j=i+1; j<([gameRate count]-1); j++) {
+            for (NSInteger k=j+1; k<([gameRate count]); k++) {
+                countTotal = countTotal + [gameRate[i] floatValue] * [gameRate[j] floatValue] * [gameRate[k] floatValue];
+            }
+        }
+    }
+    
+    CCLOG(@"8過3,%.2f",countTotal);
+    return countTotal * money;
+}
+-(float) eightPassFour
+{
+    NSNumber * oneGame = [NSNumber numberWithFloat:at];
+    NSNumber * twoGame = [NSNumber numberWithFloat:bt];
+    NSNumber * threeGame = [NSNumber numberWithFloat:ct];
+    NSNumber * fourGame = [NSNumber numberWithFloat:dt];
+    NSNumber * fiveGame = [NSNumber numberWithFloat:et];
+    NSNumber * sixGame = [NSNumber numberWithFloat:ft];
+    NSNumber * sevenGame = [NSNumber numberWithFloat:gt];
+    NSNumber * eightGame = [NSNumber numberWithFloat:ht];
+    NSArray * gameRate = [[NSArray alloc]initWithObjects:oneGame,twoGame,threeGame,fourGame,fiveGame,sixGame,sevenGame,eightGame, nil];
+    float countTotal = 0;
+    
+    for (NSInteger i=0; i<([gameRate count]-3); i++) {
+        for (NSInteger j=i+1; j<([gameRate count]-2); j++) {
+            for (NSInteger k=j+1; k<([gameRate count]-1); k++) {
+                for (NSInteger l=k+1; l<([gameRate count]); l++) {
+                    countTotal = countTotal + [gameRate[i] floatValue] * [gameRate[j] floatValue] * [gameRate[k] floatValue] * [gameRate[l] floatValue];
+                    
+                }
+            }
+        }
+    }
+    return countTotal * money;
+}
+-(float) eightPassFive
+{
+    NSNumber * oneGame = [NSNumber numberWithFloat:at];
+    NSNumber * twoGame = [NSNumber numberWithFloat:bt];
+    NSNumber * threeGame = [NSNumber numberWithFloat:ct];
+    NSNumber * fourGame = [NSNumber numberWithFloat:dt];
+    NSNumber * fiveGame = [NSNumber numberWithFloat:et];
+    NSNumber * sixGame = [NSNumber numberWithFloat:ft];
+    NSNumber * sevenGame = [NSNumber numberWithFloat:gt];
+    NSNumber * eightGame = [NSNumber numberWithFloat:ht];
+    NSArray * gameRate = [[NSArray alloc]initWithObjects:oneGame,twoGame,threeGame,fourGame,fiveGame,sixGame,sevenGame,eightGame, nil];
+    float countTotal = 0;
+    
+    for (NSInteger i=0; i<([gameRate count]-4); i++) {
+        for (NSInteger j=i+1; j<([gameRate count]-3); j++) {
+            for (NSInteger k=j+1; k<([gameRate count]-2); k++) {
+                for (NSInteger l=k+1; l<([gameRate count]-1); l++) {
+                    for (NSInteger r=l+1; r<[gameRate count]; r++) {
+                        countTotal = countTotal + [gameRate[i] floatValue] * [gameRate[j] floatValue] * [gameRate[k] floatValue] * [gameRate[l] floatValue] * [gameRate[r] floatValue];
+                    }
+                }
+            }
+        }
+    }
+    CCLOG(@"8過5,%.2f",countTotal);
+    return countTotal * money;
+}
+-(float) eightPassSix
+{
+    NSNumber * oneGame = [NSNumber numberWithFloat:at];
+    NSNumber * twoGame = [NSNumber numberWithFloat:bt];
+    NSNumber * threeGame = [NSNumber numberWithFloat:ct];
+    NSNumber * fourGame = [NSNumber numberWithFloat:dt];
+    NSNumber * fiveGame = [NSNumber numberWithFloat:et];
+    NSNumber * sixGame = [NSNumber numberWithFloat:ft];
+    NSNumber * sevenGame = [NSNumber numberWithFloat:gt];
+    NSNumber * eightGame = [NSNumber numberWithFloat:ht];
+    NSArray * gameRate = [[NSArray alloc]initWithObjects:oneGame,twoGame,threeGame,fourGame,fiveGame,sixGame,sevenGame,eightGame, nil];
+    float countTotal = 0;
+    
+    for (NSInteger i=0; i<([gameRate count]-5); i++) {
+        for (NSInteger j=i+1; j<([gameRate count]-4); j++) {
+            for (NSInteger k=j+1; k<([gameRate count]-3); k++) {
+                for (NSInteger l=k+1; l<([gameRate count]-2); l++) {
+                    for (NSInteger r=l+1; r<([gameRate count]-1); r++) {
+                        for (NSInteger s=r+1; s<[gameRate count]; s++) {
+                            countTotal = countTotal + [gameRate[i] floatValue] * [gameRate[j] floatValue] * [gameRate[k] floatValue] * [gameRate[l] floatValue] * [gameRate[r] floatValue] * [gameRate[s] floatValue];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    CCLOG(@"8過6,%.2f",countTotal);
+    return countTotal * money;
+}
+-(float) eightPassSeven
+{
+    NSNumber * oneGame = [NSNumber numberWithFloat:at];
+    NSNumber * twoGame = [NSNumber numberWithFloat:bt];
+    NSNumber * threeGame = [NSNumber numberWithFloat:ct];
+    NSNumber * fourGame = [NSNumber numberWithFloat:dt];
+    NSNumber * fiveGame = [NSNumber numberWithFloat:et];
+    NSNumber * sixGame = [NSNumber numberWithFloat:ft];
+    NSNumber * sevenGame = [NSNumber numberWithFloat:gt];
+    NSNumber * eightGame = [NSNumber numberWithFloat:ht];
+    NSArray * gameRate = [[NSArray alloc]initWithObjects:oneGame,twoGame,threeGame,fourGame,fiveGame,sixGame,sevenGame,eightGame, nil];
+    float countTotal = 0;
+    
+    for (NSInteger i=0; i<([gameRate count]-6);i++) {
+        for (NSInteger j=i+1; j<([gameRate count]-5); j++) {
+            for (NSInteger k=j+1; k<([gameRate count]-4); k++) {
+                for (NSInteger l=k+1; l<([gameRate count]-3); l++) {
+                    for (NSInteger r=l+1; r<([gameRate count]-2); r++) {
+                        for (NSInteger s=r+1; s<([gameRate count]-1); s++) {
+                            for (NSInteger t=s+1; t<[gameRate count]; t++) {
+                                countTotal = countTotal + [gameRate[i] floatValue] * [gameRate[j] floatValue] * [gameRate[k] floatValue] * [gameRate[l] floatValue] * [gameRate[r] floatValue] * [gameRate[s] floatValue] * [gameRate[t] floatValue];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    CCLOG(@"8過7,%.2f",countTotal);
+    return countTotal * money;
+}
+-(float) eightPassEight
+{
+    return at * bt * ct * dt * et * ft * gt * ht *  money;
+}
 #pragma showDetail
 -(void) howToUse :(id) sender
 {
@@ -887,7 +1268,38 @@
             CCLOG(@"textfield lock %f,",sixTemp);
         }    }
 }
-
+-(void) gameSevenNil :(id)sender
+{
+    if (_GTeam.visible ) {
+        if (_gBlockBG.visible) {
+            _GTeam.textField.text = [NSString stringWithFormat:@"%.2f",sevenTemp];
+            _gBlockBG.visible = NO;
+            _GTeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",sevenTemp);
+        }else{
+            sevenTemp = [_GTeam.textField.text floatValue];
+            _GTeam.textField.text = @"0";
+            _gBlockBG.visible = YES;
+            _GTeam.enabled = NO;
+            CCLOG(@"textfield lock %f,",sevenTemp);
+        }    }
+}
+-(void) gameEightNil :(id)sender
+{
+    if (_HTeam.visible ) {
+        if (_hBlockBG.visible) {
+            _HTeam.textField.text = [NSString stringWithFormat:@"%.2f",eightTemp];
+            _hBlockBG.visible = NO;
+            _HTeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",eightTemp);
+        }else{
+            eightTemp = [_HTeam.textField.text floatValue];
+            _HTeam.textField.text = @"0";
+            _hBlockBG.visible = YES;
+            _HTeam.enabled = NO;
+            CCLOG(@"textfield lock %f,",eightTemp);
+        }    }
+}
 #pragma createWeb
 -(void) isLinkToWeb
 {

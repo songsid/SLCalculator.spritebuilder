@@ -128,7 +128,7 @@
             
         case kBanner_IPad_Portrait_Bottom:
         {
-            off_y = s.height-1000;
+            off_y = s.height+1000;
             on_y = s.height*2-frame.size.height;
         }
             break;

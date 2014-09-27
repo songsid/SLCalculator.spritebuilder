@@ -30,6 +30,9 @@
     CCTextField * _DTeam;
     CCTextField * _ETeam;
     CCTextField * _FTeam;
+    CCTextField * _GTeam;
+    CCTextField * _HTeam;
+    
     CCButton * _lotteryDetailButton;
     CCButton * _howToUseButton;
     CCButton * _countStartButton;
@@ -53,7 +56,8 @@
     CCNode * _dBlockBG;
     CCNode * _eBlockBG;
     CCNode * _fBlockBG;
-    
+    CCNode * _gBlockBG;
+    CCNode * _hBlockBG;
     
     
     CCButton * _selecetMButton;
@@ -69,6 +73,9 @@
     CCButton * _fourButton;
     CCButton * _fiveButton;
     CCButton * _sixButton;
+    CCButton * _sevenButton;
+    CCButton * _eightButton;
+    
     CCLabelTTF * _nLabel;
 
     CCButton * _gameOneNil;
@@ -77,7 +84,8 @@
     CCButton * _gameFourNil;
     CCButton * _gameFiveNil;
     CCButton * _gameSixNil;
-    
+    CCButton * _gameSevenNil;
+    CCButton * _gameEightNil;
     
     BOOL Bsingle;
     BOOL Btwo;
@@ -85,6 +93,8 @@
     BOOL Bfour;
     BOOL Bfive;
     BOOL Bsix;
+    BOOL Bseven;
+    BOOL Beight;
     
     int m,n,money; // mXn
     
@@ -94,6 +104,11 @@
     float  dt;
     float  et;
     float  ft;
+    float  gt;
+    float  ht;
+    
+    
+    
     
     float oneTemp;
     float twoTemp;
@@ -101,8 +116,21 @@
     float fourTemp;
     float fiveTemp;
     float sixTemp;
+    float sevenTemp;
+    float eightTemp;
+    
     
     CCScrollView * _datailScrollView;
+    
+    CCParticleSystem * _ccp1;
+    CCParticleSystem * _ccp2;
+    CCParticleSystem * _ccp3;
+    CCParticleSystem * _ccp4;
+    CCParticleSystem * _ccp5;
+    CCParticleSystem * _ccp6;
+    CCParticleSystem * _ccp7;
+    CCParticleSystem * _ccp8;
+    
 }
 
 @property (nonatomic,strong) NSMutableArray * teamArray;
