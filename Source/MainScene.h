@@ -43,13 +43,6 @@
     CCNode * _MBG;
     CCButton * _BlockButton;
 
-    CCLayoutBox * _N2;
-    CCLayoutBox * _N3;
-    CCLayoutBox * _N4;
-    CCLayoutBox * _N5;
-    CCLayoutBox * _N61;
-    CCLayoutBox * _N62;
-    
     CCNode * _aBlockBG;
     CCNode * _bBlockBG;
     CCNode * _cBlockBG;
@@ -65,6 +58,8 @@
     int tutorialInt;
     CCLabelTTF * _next;
     
+    CCNode * _line2;
+    CCNode * _line3;
     CCNode * _buttomLine;
     CCButton * _selectMN;
     CCButton * _singleButton;
@@ -98,26 +93,26 @@
     
     int m,n,money; // mXn
     
-    float  at;
-    float  bt;
-    float  ct;
-    float  dt;
-    float  et;
-    float  ft;
-    float  gt;
-    float  ht;
+    double  at;
+    double  bt;
+    double  ct;
+    double  dt;
+    double  et;
+    double  ft;
+    double  gt;
+    double  ht;
     
     
     
     
-    float oneTemp;
-    float twoTemp;
-    float threeTemp;
-    float fourTemp;
-    float fiveTemp;
-    float sixTemp;
-    float sevenTemp;
-    float eightTemp;
+    double oneTemp;
+    double twoTemp;
+    double threeTemp;
+    double fourTemp;
+    double fiveTemp;
+    double sixTemp;
+    double sevenTemp;
+    double eightTemp;
     
     
     CCScrollView * _datailScrollView;
