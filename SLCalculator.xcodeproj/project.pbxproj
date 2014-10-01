@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F0873E819DAA62B00C77D9A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F0873E719DAA62B00C77D9A /* StoreKit.framework */; };
+		1F08745819DC321F00C77D9A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F08745719DC321F00C77D9A /* StoreKit.framework */; };
 		1F09C9BE19D05035003A6617 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09C9BD19D05035003A6617 /* EventKit.framework */; };
 		1F09C9C119D0503D003A6617 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F09C9C019D0503D003A6617 /* EventKitUI.framework */; };
 		1F09C9CA19D2A7BA003A6617 /* WebScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F09C9C919D2A7BA003A6617 /* WebScene.m */; };
@@ -75,7 +75,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F0873E719DAA62B00C77D9A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1F08741419DB967300C77D9A /* GADInAppPurchase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchase.h; sourceTree = "<group>"; };
+		1F08741519DB967300C77D9A /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
+		1F08745719DC321F00C77D9A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1F09C9BD19D05035003A6617 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		1F09C9C019D0503D003A6617 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		1F09C9C819D2A7BA003A6617 /* WebScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebScene.h; path = Source/WebScene.h; sourceTree = "<group>"; };
@@ -112,8 +114,6 @@
 		1FAC01BB19D04F4300FD13D5 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
 		1FAC01BC19D04F4300FD13D5 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
 		1FAC01BD19D04F4300FD13D5 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		1FAC01BE19D04F4300FD13D5 /* GADInAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchase.h; sourceTree = "<group>"; };
-		1FAC01BF19D04F4300FD13D5 /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
 		1FAC01C019D04F4300FD13D5 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
 		1FAC01C119D04F4300FD13D5 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
 		1FAC01C219D04F4300FD13D5 /* GADModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADModules.h; sourceTree = "<group>"; };
@@ -148,10 +148,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F08745819DC321F00C77D9A /* StoreKit.framework in Frameworks */,
 				1F09C9C119D0503D003A6617 /* EventKitUI.framework in Frameworks */,
 				1F09C9BE19D05035003A6617 /* EventKit.framework in Frameworks */,
 				1F414D26199B633C001E2171 /* CoreTelephony.framework in Frameworks */,
-				1F0873E819DAA62B00C77D9A /* StoreKit.framework in Frameworks */,
 				B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */,
 				1F414D24199B623C001E2171 /* SystemConfiguration.framework in Frameworks */,
 				1F414D20199B6227001E2171 /* MessageUI.framework in Frameworks */,
@@ -208,10 +208,10 @@
 				1FAC01B919D04F4300FD13D5 /* GADAdMobExtras.h */,
 				1FAC01BA19D04F4300FD13D5 /* GADAdNetworkExtras.h */,
 				1FAC01BB19D04F4300FD13D5 /* GADAdSize.h */,
+				1F08741419DB967300C77D9A /* GADInAppPurchase.h */,
+				1F08741519DB967300C77D9A /* GADInAppPurchaseDelegate.h */,
 				1FAC01BC19D04F4300FD13D5 /* GADBannerView.h */,
 				1FAC01BD19D04F4300FD13D5 /* GADBannerViewDelegate.h */,
-				1FAC01BE19D04F4300FD13D5 /* GADInAppPurchase.h */,
-				1FAC01BF19D04F4300FD13D5 /* GADInAppPurchaseDelegate.h */,
 				1FAC01C019D04F4300FD13D5 /* GADInterstitial.h */,
 				1FAC01C119D04F4300FD13D5 /* GADInterstitialDelegate.h */,
 				1FAC01C219D04F4300FD13D5 /* GADModules.h */,
@@ -276,7 +276,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1F0873E719DAA62B00C77D9A /* StoreKit.framework */,
+				1F08745719DC321F00C77D9A /* StoreKit.framework */,
 				1F09C9C019D0503D003A6617 /* EventKitUI.framework */,
 				1F09C9BD19D05035003A6617 /* EventKit.framework */,
 				1F414D25199B633C001E2171 /* CoreTelephony.framework */,
@@ -356,7 +356,7 @@
 								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -568,7 +568,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SLCalculator;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "997b2e9f-5d25-4af7-a262-879976b6230b";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -582,8 +582,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CHING-YUNG CHEN (AVXY6A4997)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CHING-YUNG CHEN (AVXY6A4997)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
@@ -608,7 +608,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SLCalculator;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "997b2e9f-5d25-4af7-a262-879976b6230b";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
