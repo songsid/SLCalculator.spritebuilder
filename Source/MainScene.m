@@ -106,12 +106,13 @@
             case 0:
                 _next.visible = NO;
                 tutorialInt +=1;
-                [self.userObject runAnimationsForSequenceNamed:@"First"];
+                [self.userObject runAnimationsForSequenceNamed:@"First0_1"];
                 break;
             case 1:
                 _next.visible = NO;
                 tutorialInt +=1;
                 [self.userObject runAnimationsForSequenceNamed:@"First1"];
+                [self gameXinv:NO];//game xx button enable == no
                 break;
             case 2:
                 _next.visible = NO;
@@ -134,6 +135,9 @@
                 _HTeam.visible = NO;
                 _countStartButton.enabled = YES;
                 _howToUseButton.enabled = YES;
+                
+                [self gameXinv:YES];
+                
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Tutorial"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             
@@ -1301,6 +1305,18 @@
             _HTeam.enabled = NO;
             CCLOG(@"textfield lock %f,",eightTemp);
         }    }
+}
+
+-(void) gameXinv :(BOOL) xEnable
+{
+    _gameOneNil.enabled = xEnable;
+    _gameTwoNil.enabled = xEnable;
+    _gameThreeNil.enabled = xEnable;
+    _gameFourNil.enabled = xEnable;
+    _gameFiveNil.enabled = xEnable;
+    _gameSixNil.enabled = xEnable;
+    _gameSevenNil.enabled = xEnable;
+    _gameEightNil.enabled = xEnable;
 }
 #pragma createWeb
 -(void) isLinkToWeb

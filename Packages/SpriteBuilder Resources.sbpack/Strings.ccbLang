@@ -5,12 +5,347 @@
 	<key>activeLanguages</key>
 	<array>
 		<string>en</string>
+		<string>zh-Hant</string>
 	</array>
 	<key>fileType</key>
 	<string>SpriteBuilderTranslations</string>
 	<key>fileVersion</key>
 	<integer>1</integer>
 	<key>translations</key>
-	<array/>
+	<array>
+		<dict>
+			<key>key</key>
+			<string>選取場數</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Game </string>
+				<key>zh-Hant</key>
+				<string>選取場數</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>運彩計算機</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Sports Lottery Calculator       </string>
+				<key>zh-Hant</key>
+				<string>運彩計算機</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>開始計算！</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Start Counting!</string>
+				<key>zh-Hant</key>
+				<string>開始計算！</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>選取組數</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Games	</string>
+				<key>zh-Hant</key>
+				<string>選取組數</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>輸入單場賽事賠率
+若購買六場則輸入六項賠率
+</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Key in game rate</string>
+				<key>zh-Hant</key>
+				<string>輸入單場賽事賠率
+若購買六場則輸入六項賠率
+</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>單場</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Singles</string>
+				<key>zh-Hant</key>
+				<string>單場</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>過兩關</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Doubles</string>
+				<key>zh-Hant</key>
+				<string>過兩關</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>過三關</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Triples</string>
+				<key>zh-Hant</key>
+				<string>過三關</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>過四關</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>4-Folds</string>
+				<key>zh-Hant</key>
+				<string>過四關</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>過五關</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>5-Folds</string>
+				<key>zh-Hant</key>
+				<string>過五關</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>過六關</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>6-Folds</string>
+				<key>zh-Hant</key>
+				<string>過六關</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>選好了</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>OK</string>
+				<key>zh-Hant</key>
+				<string>選好了</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>過七關</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>7-Folds</string>
+				<key>zh-Hant</key>
+				<string>過七關</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>過八關</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>8-Folds</string>
+				<key>zh-Hant</key>
+				<string>過八關</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>      場次賠率</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>  Game Rate</string>
+				<key>zh-Hant</key>
+				<string>      場次賠率</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>       下注金額：</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>          Bets：</string>
+				<key>zh-Hant</key>
+				<string>       下注金額：</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>       過關組合：</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>        Columns：</string>
+				<key>zh-Hant</key>
+				<string>       過關組合：</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>X10 元 (一注)</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>    X10 元 (one bet)</string>
+				<key>zh-Hant</key>
+				<string>X10 元 (一注)</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>選擇組合</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>System</string>
+				<key>zh-Hant</key>
+				<string>選擇組合</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>     實得總金額:</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>      Winnings:</string>
+				<key>zh-Hant</key>
+				<string>     實得總金額:</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>請選擇比賽場數</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Select </string>
+				<key>zh-Hant</key>
+				<string>請選擇比賽場數</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>使用說明</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Instructions</string>
+				<key>zh-Hant</key>
+				<string>使用說明</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>知道了</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>OK</string>
+				<key>zh-Hant</key>
+				<string>知道了</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>開發人員</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Developer</string>
+				<key>zh-Hant</key>
+				<string>開發人員</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>輸入單注下注金額</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Input bets</string>
+				<key>zh-Hant</key>
+				<string>輸入單注下注金額</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>輸入完成後點擊開始計算
+即得到總彩金</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Finish! 
+Click Start Counting!</string>
+				<key>zh-Hant</key>
+				<string>輸入完成後點擊開始計算
+即得到總彩金</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>更多資訊</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>More Info</string>
+				<key>zh-Hant</key>
+				<string>更多資訊</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>輸入彩金
+點擊選擇組合
+選擇下注場數與過關情形</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Input Bets and
+Select System to input details</string>
+				<key>zh-Hant</key>
+				<string>輸入彩金
+點擊選擇組合
+選擇下注場數與過關情形</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>選擇組數 
+再選擇場數</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Select Game and Games</string>
+				<key>zh-Hant</key>
+				<string>選擇組數 
+再選擇場數</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>
