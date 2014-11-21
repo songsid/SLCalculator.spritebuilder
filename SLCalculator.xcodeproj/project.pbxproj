@@ -38,8 +38,11 @@
 		1F414D20199B6227001E2171 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F414D1F199B6227001E2171 /* MessageUI.framework */; };
 		1F414D24199B623C001E2171 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F414D23199B623C001E2171 /* SystemConfiguration.framework */; };
 		1F414D26199B633C001E2171 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F414D25199B633C001E2171 /* CoreTelephony.framework */; };
+		1F79E9E11A16645200A8CF90 /* HistoryNewScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F79E9E01A16645200A8CF90 /* HistoryNewScene.m */; };
+		1F99110E1A069328008B16F5 /* HistoryScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F99110D1A069328008B16F5 /* HistoryScene.m */; };
 		1FAC01C719D04F4300FD13D5 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FAC01C519D04F4300FD13D5 /* libGoogleAdMobAds.a */; };
 		1FAC01C819D04F4300FD13D5 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1FAC01C619D04F4300FD13D5 /* README.txt */; };
+		1FDEC9261A03CB5C00D4837F /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDEC9251A03CB5C00D4837F /* History.m */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		B737893B180761570076A88C /* Published-iOS in Resources */ = {isa = PBXBuildFile; fileRef = B737893A180761570076A88C /* Published-iOS */; };
 		B737893F1807617C0076A88C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
@@ -58,6 +61,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1F0DFBD91A15DC86002931ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2FEB74F194F6C9E00FC0574;
+			remoteInfo = cocos2dAndroid;
+		};
+		1F0DFBDB1A15DC86002931ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BF3267A195F8D8800D9A51A;
+			remoteInfo = cocos2dJava;
+		};
+		1F0DFBDD1A15DC86002931ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7A4037A819E37038007B6E8F;
+			remoteInfo = "cocos2d-mac";
+		};
 		B737894A180761A90076A88C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */;
@@ -109,6 +133,10 @@
 		1F414D1F199B6227001E2171 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		1F414D23199B623C001E2171 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1F414D25199B633C001E2171 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		1F79E9DF1A16645200A8CF90 /* HistoryNewScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryNewScene.h; path = Source/HistoryNewScene.h; sourceTree = "<group>"; };
+		1F79E9E01A16645200A8CF90 /* HistoryNewScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryNewScene.m; path = Source/HistoryNewScene.m; sourceTree = "<group>"; };
+		1F99110C1A069328008B16F5 /* HistoryScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryScene.h; path = Source/HistoryScene.h; sourceTree = "<group>"; };
+		1F99110D1A069328008B16F5 /* HistoryScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryScene.m; path = Source/HistoryScene.m; sourceTree = "<group>"; };
 		1FAC01B919D04F4300FD13D5 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		1FAC01BA19D04F4300FD13D5 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		1FAC01BB19D04F4300FD13D5 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -121,6 +149,8 @@
 		1FAC01C419D04F4300FD13D5 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
 		1FAC01C519D04F4300FD13D5 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		1FAC01C619D04F4300FD13D5 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		1FDEC9241A03CB5C00D4837F /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = History.h; path = Source/History.h; sourceTree = "<group>"; };
+		1FDEC9251A03CB5C00D4837F /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = History.m; path = Source/History.m; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		B737893A180761570076A88C /* Published-iOS */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Published-iOS"; path = "Source/Resources/Published-iOS"; sourceTree = SOURCE_ROOT; };
 		B737893D1807617C0076A88C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = "<group>"; };
@@ -236,6 +266,12 @@
 			children = (
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
+				1FDEC9241A03CB5C00D4837F /* History.h */,
+				1FDEC9251A03CB5C00D4837F /* History.m */,
+				1F99110C1A069328008B16F5 /* HistoryScene.h */,
+				1F99110D1A069328008B16F5 /* HistoryScene.m */,
+				1F79E9DF1A16645200A8CF90 /* HistoryNewScene.h */,
+				1F79E9E01A16645200A8CF90 /* HistoryNewScene.m */,
 				B7378992180767190076A88C /* MainScene.h */,
 				B7378993180767190076A88C /* MainScene.m */,
 				1F09C9C819D2A7BA003A6617 /* WebScene.h */,
@@ -248,6 +284,9 @@
 			isa = PBXGroup;
 			children = (
 				B737894B180761A90076A88C /* libcocos2d.a */,
+				1F0DFBDA1A15DC86002931ED /* libcocos2dAndroid.a */,
+				1F0DFBDC1A15DC86002931ED /* cocos2dJava.jar */,
+				1F0DFBDE1A15DC86002931ED /* libcocos2d-mac.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -346,7 +385,7 @@
 		B77F1B2617B978D7009739AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Apportable;
 				TargetAttributes = {
 					B77F1B2D17B978D7009739AE = {
@@ -386,6 +425,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		1F0DFBDA1A15DC86002931ED /* libcocos2dAndroid.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcocos2dAndroid.a;
+			remoteRef = 1F0DFBD91A15DC86002931ED /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1F0DFBDC1A15DC86002931ED /* cocos2dJava.jar */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.jar;
+			path = cocos2dJava.jar;
+			remoteRef = 1F0DFBDB1A15DC86002931ED /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1F0DFBDE1A15DC86002931ED /* libcocos2d-mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libcocos2d-mac.a";
+			remoteRef = 1F0DFBDD1A15DC86002931ED /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B737894B180761A90076A88C /* libcocos2d.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -453,9 +513,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
+				1F79E9E11A16645200A8CF90 /* HistoryNewScene.m in Sources */,
 				1F09C9CA19D2A7BA003A6617 /* WebScene.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
+				1FDEC9261A03CB5C00D4837F /* History.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				1F99110E1A069328008B16F5 /* HistoryScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,7 +600,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -578,7 +640,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;

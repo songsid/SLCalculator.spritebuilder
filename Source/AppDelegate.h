@@ -51,7 +51,7 @@ typedef enum _bannerType
 
 #define BANNER_TYPE ((IS_IPAD) ? kBanner_IPad_Portrait_Bottom : kBanner_Portrait_Bottom );
 
-@interface AppController : CCAppDelegate
+@interface AppController : CCAppDelegate <GADBannerViewDelegate>
 {
     CocosBannerType mBannerType;
     GADBannerView *mBannerView;

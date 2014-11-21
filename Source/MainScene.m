@@ -9,6 +9,8 @@
 #import "MainScene.h"
 
 @implementation MainScene
+
+
 -(NSMutableArray *) teamArray
 {
     if (!_teamArray) {
@@ -17,8 +19,19 @@
     return _teamArray;
 }
 
+-(NSMutableDictionary *)bigDictionary
+{
+    if (!_bigDictionary) {
+        if (![[NSUserDefaults standardUserDefaults]objectForKey:@"Dictionary"]) {
+            _bigDictionary = [[NSMutableDictionary alloc]init];
+        }else _bigDictionary = [[NSUserDefaults standardUserDefaults ]objectForKey:@"Dictionary"];
+    }
+    
+    return _bigDictionary;
+}
 -(void) didLoadFromCCB
 {
+
     
     self.userInteractionEnabled = YES;
     
@@ -91,7 +104,16 @@
         } delay:1];
 
     };
+    
 
+}
+
+-(void) history
+{
+    //   history = (HistoryScene *)[CCBReader loadAsScene:@"HistoryScene"];
+    CCScene * historys = (CCScene * )[CCBReader loadAsScene:@"HistoryNewScene"];
+    [[CCDirector sharedDirector] pushScene:historys withTransition:[CCTransition transitionMoveInWithDirection:3 duration:0.3f]];
+    
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -230,11 +252,12 @@
 -(void) qSelectMN :(id) sender
 {
     if (!_MBG.position.x<300 ) {
+        [self removeBlackBlock]; // 解除xx
     [self.userObject runAnimationsForSequenceNamed:@"QSelectMN"];
         [self scheduleBlock:^(CCTimer *timer) {
             [self showGameRateTextfield];
         } delay:1.0f];
-    int nNumber;
+    nNumber = 0;
     switch ([_countTeam.string intValue]) {
         case 2:
             nNumber  = 2*Bsingle + 1*Btwo;
@@ -321,6 +344,73 @@
     [_HTeam setEnabled:block];
   }
 
+-(void) removeBlackBlock // 換場數時textfield的x是否存在
+{
+    if (_aBlockBG.visible) {
+        _ATeam.string = [NSString stringWithFormat:@"%.2f",oneTemp];
+        _aBlockBG.visible = NO;
+        _ATeam.enabled = YES;}
+    
+    if (_bBlockBG.visible) {
+        _BTeam.string = [NSString stringWithFormat:@"%.2f",twoTemp];
+        _bBlockBG.visible = NO;
+        _BTeam.enabled = YES;
+    }
+    if (_cBlockBG.visible) {
+        _CTeam.string = [NSString stringWithFormat:@"%.2f",threeTemp];
+        _cBlockBG.visible = NO;
+        _CTeam.enabled = YES;
+        CCLOG(@"textfield unlock %f",threeTemp);
+    }
+    if (_dBlockBG.visible) {
+        _DTeam.string = [NSString stringWithFormat:@"%.2f",fourTemp];
+        _dBlockBG.visible = NO;
+        _DTeam.enabled = YES;
+        CCLOG(@"textfield unlock %f",fourTemp);
+    }
+    
+        if (_eBlockBG.visible) {
+            _ETeam.string = [NSString stringWithFormat:@"%.2f",fiveTemp];
+            _eBlockBG.visible = NO;
+            _ETeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",fiveTemp);
+        }
+    
+        if (_fBlockBG.visible) {
+            _FTeam.string = [NSString stringWithFormat:@"%.2f",sixTemp];
+            _fBlockBG.visible = NO;
+            _FTeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",sixTemp);
+        }
+        if (_gBlockBG.visible) {
+            _GTeam.string = [NSString stringWithFormat:@"%.2f",sevenTemp];
+            _gBlockBG.visible = NO;
+            _GTeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",sevenTemp);
+        }
+        if (_hBlockBG.visible) {
+            _HTeam.string = [NSString stringWithFormat:@"%.2f",eightTemp];
+            _hBlockBG.visible = NO;
+            _HTeam.enabled = YES;
+            CCLOG(@"textfield unlock %f",eightTemp);
+        }
+    CCLOG(@"removeBlock");
+}
+
+
+-(void) orangeButtonUp //按下選取場數時判斷過幾關是否坐下
+{
+    if (Bsingle) [self singleCount];
+    if (Btwo) [self twoCount];
+    if (Bthree) [self threeCount];
+    if (Bfour) [self fourCount];
+    if (Bfive) [self fiveCount];
+    if (Bsix) [self sixCount];
+    if (Bseven) [self sevenCount];
+    if (Beight) [self eightCount];
+    CCLOG(@"orange");
+    
+}
 -(void) M2
 {
     _countTeam.string =@"2";
@@ -371,6 +461,7 @@
     _HTeam.visible = NO;
     [self BGgoOut];
 
+
 }
 -(void) M5
 {
@@ -388,6 +479,7 @@
     _GTeam.visible = NO;
     _HTeam.visible = NO;
     [self BGgoOut];
+
 
 }
 -(void) M6
@@ -424,7 +516,7 @@
     _GTeam.visible = YES;
     _HTeam.visible = NO;
     [self BGgoOut];
-    
+
 }
 -(void) M8
 {
@@ -442,126 +534,8 @@
     _GTeam.visible = YES;
     _HTeam.visible = YES;
     [self BGgoOut];
-    
 }
-/*
--(void) N1: (id) sender
-{
-    [self BGgoOut];
-    _countCount.string = @"1";
-    _selecetNButton.title = _countCount.string;
-    
-}
--(void) N3: (id) sender
-{
-    [self BGgoOut];
-    _countCount.string = @"3";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N4: (id) sender
-{
-    [self BGgoOut];
-    _countCount.string = @"4";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N5: (id) sender
-{
-    [self BGgoOut];
-    _countCount.string = @"5";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N6: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"6";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N7: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"7";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N10: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"10";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N11: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"11";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N15: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"15";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N16: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"16";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N20: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"20";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N22: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"22";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N26: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"26";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N35: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"35";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N42: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"42";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N50: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"50";
-    _selecetNButton.title = _countCount.string;
-}
--(void) N57: (id) sender
-{
-    [self BGgoOut];
-    
-    _countCount.string = @"57";
-    _selecetNButton.title = _countCount.string;
-}
-*/
+
 
 -(void) BGgoOut
 {
@@ -608,7 +582,61 @@
 
 
 
+-(void) arrayWithHistory
+{
+    if ([_getLottery.string floatValue]>0) {
+        
+    NSDictionary * dict = [[NSDictionary alloc]init];
+        dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@",_getLottery.string],@"Winnings", [NSString stringWithFormat:@"%d",m],@"m", [NSString stringWithFormat:@"%d",nNumber], @"n",(Bsingle ? @"過一關" : @" "),@"P1",(Btwo ? @"過兩關" : @" "),@"P2",(Bthree ? @"過三關" : @" "),@"P3",(Bfour ? @"過四關" : @" "),@"P4",(Bfive ? @"過五關" : @" "),@"P5",(Bsix ? @"過六關" : @" "),@"P6",(Bseven ? @"過七關" : @" "),@"P7",(Beight ? @"過八關" : @" "),@"P8", [NSString stringWithFormat:@"%d",[_lottery.string intValue] * nNumber * 10],@"bet", nil];
 
+        
+    NSLog(@"%@",dict[@"Winnings"]);
+    NSLog(@"%@",dict[@"m"]);
+    NSLog(@"%@",dict[@"m"]);
+    NSLog(@"%@",dict[@"P1"]);
+    NSLog(@"%@",dict[@"P2"]);
+    NSLog(@"%@",dict[@"P3"]);
+    NSLog(@"%@",dict[@"P4"]);
+    NSLog(@"%@",dict[@"P5"]);
+    NSLog(@"%@",dict[@"P6"]);
+    NSLog(@"%@",dict[@"P7"]);
+    NSLog(@"%@",dict[@"P8"]);
+    
+        NSLog(@"1");
+    NSString * number = [NSString stringWithFormat:@"%lu",[self.bigDictionary count]+1 ];
+        NSLog(@"11 %@",number);
+    self.bigDictionary[number] = dict;
+        NSLog(@"111");
+    [[NSUserDefaults standardUserDefaults] setObject:self.bigDictionary forKey:@"Dictionary"];
+        NSLog(@"1111");
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+                NSLog(@"2");
+    NSEnumerator * en = [_bigDictionary keyEnumerator];
+    
+    NSArray * sa = [[en allObjects]sortedArrayUsingComparator:^(id str1, id str2) {
+        
+        if ([str1 integerValue] < [str2 integerValue]) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        
+        if ([str1 integerValue] > [str2 integerValue]) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+            NSLog(@"3");
+    for (NSString * sr in sa) {
+            NSLog(@"4");
+        NSLog(@"_bigDic[%@] = %@%@%@%@%@%@%@%@",sr,_bigDictionary[sr][@"P1"],_bigDictionary[sr][@"P2"],_bigDictionary[sr][@"P3"],_bigDictionary[sr][@"P4"],_bigDictionary[sr][@"P5"],_bigDictionary[sr][@"P6"],_bigDictionary[sr][@"P7"],_bigDictionary[sr][@"P8"]);
+        NSLog(@"lottery = %@ mn = %@x%@",_bigDictionary[sr][@"Winnings"],_bigDictionary[sr][@"m"],_bigDictionary[sr][@"n"]);
+            NSLog(@"5");
+    }
+                NSLog(@"6");
+                NSLog(@"dictionarycount %ld" ,[sa count]);
+    }
+
+}
 
 
 
@@ -617,17 +645,13 @@
     double a = [self counting];
     _getLottery.string = [NSString stringWithFormat:@"%.2f",a];
     NSLog(@"%f",a);
-    [self sevenPassFour];
+    [self arrayWithHistory];
 }
 
 
 -(double) counting
 {
 
-    
-    
-    
-    
     if(_ATeam.string){
         at = [_ATeam.string doubleValue];
         //[self.teamArray addObject:at];
@@ -1176,131 +1200,131 @@
 
 #pragma gameNil
 
--(void) gameOneNil :(id)sender
+-(void) gameOneNil
 {
     if (_ATeam.visible) {
         if (_aBlockBG.visible) {
-            _ATeam.textField.text = [NSString stringWithFormat:@"%.2f",oneTemp];
+            _ATeam.string = [NSString stringWithFormat:@"%.2f",oneTemp];
             _aBlockBG.visible = NO;
             _ATeam.enabled = YES;
-            CCLOG(@"textfield unlock %f",oneTemp);
+            CCLOG(@"textfield unlock %f %@",oneTemp,_ATeam.string);
         }else{
-            oneTemp = [_ATeam.textField.text doubleValue];
-            _ATeam.textField.text = @"0";
+            oneTemp = [_ATeam.string floatValue];
+            _ATeam.string = @"0";
             _aBlockBG.visible = YES;
             _ATeam.enabled = NO;
             CCLOG(@"textfield lock %f,",oneTemp);
         }
     }
 }
--(void) gameTwoNil :(id)sender
+-(void) gameTwoNil
 {
     if (_BTeam.visible) {
         if (_bBlockBG.visible) {
-            _BTeam.textField.text = [NSString stringWithFormat:@"%.2f",twoTemp];
+            _BTeam.string = [NSString stringWithFormat:@"%.2f",twoTemp];
             _bBlockBG.visible = NO;
-            _ATeam.enabled = YES;
+            _BTeam.enabled = YES;
             CCLOG(@"textfield unlock %f",twoTemp);
         }else{
-            twoTemp = [_BTeam.textField.text doubleValue];
-            _BTeam.textField.text = @"0";
+            twoTemp = [_BTeam.string floatValue];
+            _BTeam.string = @"0";
             _bBlockBG.visible = YES;
             _BTeam.enabled = NO;
             CCLOG(@"textfield lock %f,",twoTemp);
         }
     }
 }
--(void) gameThreeNil :(id)sender
+-(void) gameThreeNil
 {
     if (_CTeam.visible) {
         if (_cBlockBG.visible) {
-            _CTeam.textField.text = [NSString stringWithFormat:@"%.2f",threeTemp];
+            _CTeam.string = [NSString stringWithFormat:@"%.2f",threeTemp];
             _cBlockBG.visible = NO;
             _CTeam.enabled = YES;
             CCLOG(@"textfield unlock %f",threeTemp);
         }else{
-            threeTemp = [_CTeam.textField.text doubleValue];
-            _CTeam.textField.text = @"0";
+            threeTemp = [_CTeam.string floatValue];
+            _CTeam.string = @"0";
             _cBlockBG.visible = YES;
             _CTeam.enabled = NO;
             CCLOG(@"textfield lock %f,",threeTemp);
         }    }
 }
--(void) gameFourNil :(id)sender
+-(void) gameFourNil
 {
     if (_DTeam.visible) {
         if (_dBlockBG.visible) {
-            _DTeam.textField.text = [NSString stringWithFormat:@"%.2f",fourTemp];
+            _DTeam.string = [NSString stringWithFormat:@"%.2f",fourTemp];
             _dBlockBG.visible = NO;
             _DTeam.enabled = YES;
             CCLOG(@"textfield unlock %f",fourTemp);
         }else{
-            fourTemp = [_DTeam.textField.text doubleValue];
-            _DTeam.textField.text = @"0";
+            fourTemp = [_DTeam.string floatValue];
+            _DTeam.string = @"0";
             _dBlockBG.visible = YES;
             _DTeam.enabled = NO;
             CCLOG(@"textfield lock %f,",fourTemp);
         }    }
 }
--(void) gameFiveNil :(id)sender
+-(void) gameFiveNil
 {
     if (_ETeam.visible) {
         if (_eBlockBG.visible) {
-            _ETeam.textField.text = [NSString stringWithFormat:@"%.2f",fiveTemp];
+            _ETeam.string = [NSString stringWithFormat:@"%.2f",fiveTemp];
             _eBlockBG.visible = NO;
             _ETeam.enabled = YES;
             CCLOG(@"textfield unlock %f",fiveTemp);
         }else{
-            fiveTemp = [_ETeam.textField.text doubleValue];
-            _ETeam.textField.text = @"0";
+            fiveTemp = [_ETeam.string floatValue];
+            _ETeam.string = @"0";
             _eBlockBG.visible = YES;
             _ETeam.enabled = NO;
             CCLOG(@"textfield lock %f,",fiveTemp);
         }    }
 }
--(void) gameSixNil :(id)sender
+-(void) gameSixNil
 {
     if (_FTeam.visible ) {
         if (_fBlockBG.visible) {
-            _FTeam.textField.text = [NSString stringWithFormat:@"%.2f",sixTemp];
+            _FTeam.string = [NSString stringWithFormat:@"%.2f",sixTemp];
             _fBlockBG.visible = NO;
             _FTeam.enabled = YES;
             CCLOG(@"textfield unlock %f",sixTemp);
         }else{
-            sixTemp = [_FTeam.textField.text doubleValue];
-            _FTeam.textField.text = @"0";
+            sixTemp = [_FTeam.string floatValue];
+            _FTeam.string = @"0";
             _fBlockBG.visible = YES;
             _FTeam.enabled = NO;
             CCLOG(@"textfield lock %f,",sixTemp);
         }    }
 }
--(void) gameSevenNil :(id)sender
+-(void) gameSevenNil
 {
     if (_GTeam.visible ) {
         if (_gBlockBG.visible) {
-            _GTeam.textField.text = [NSString stringWithFormat:@"%.2f",sevenTemp];
+            _GTeam.string = [NSString stringWithFormat:@"%.2f",sevenTemp];
             _gBlockBG.visible = NO;
             _GTeam.enabled = YES;
             CCLOG(@"textfield unlock %f",sevenTemp);
         }else{
-            sevenTemp = [_GTeam.textField.text doubleValue];
-            _GTeam.textField.text = @"0";
+            sevenTemp = [_GTeam.string floatValue];
+            _GTeam.string = @"0";
             _gBlockBG.visible = YES;
             _GTeam.enabled = NO;
             CCLOG(@"textfield lock %f,",sevenTemp);
         }    }
 }
--(void) gameEightNil :(id)sender
+-(void) gameEightNil
 {
     if (_HTeam.visible ) {
         if (_hBlockBG.visible) {
-            _HTeam.textField.text = [NSString stringWithFormat:@"%.2f",eightTemp];
+            _HTeam.string = [NSString stringWithFormat:@"%.2f",eightTemp];
             _hBlockBG.visible = NO;
             _HTeam.enabled = YES;
             CCLOG(@"textfield unlock %f",eightTemp);
         }else{
-            eightTemp = [_HTeam.textField.text doubleValue];
-            _HTeam.textField.text = @"0";
+            eightTemp = [_HTeam.string floatValue];
+            _HTeam.string = @"0";
             _hBlockBG.visible = YES;
             _HTeam.enabled = NO;
             CCLOG(@"textfield lock %f,",eightTemp);
@@ -1318,6 +1342,9 @@
     _gameSevenNil.enabled = xEnable;
     _gameEightNil.enabled = xEnable;
 }
+
+
+
 #pragma createWeb
 -(void) isLinkToWeb
 {
@@ -1343,6 +1370,13 @@
     AppController * appDelegate = (AppController * )[[UIApplication sharedApplication ]delegate];
     [appDelegate performSelector:@selector(createAdmobAds) withObject:nil];
 }
+
+-(void) showAd
+{
+    AppController * appDelegate = (AppController * )[[UIApplication sharedApplication ]delegate];
+    [appDelegate performSelector:@selector(showBannerView) withObject:nil];
+}
+
 
 -(void) removeAd
 {

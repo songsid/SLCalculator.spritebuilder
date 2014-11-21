@@ -14,11 +14,15 @@
 #import "CCNode.h"
 #import "GADBannerView.h"
 #import "AppDelegate.h"
+#import "HistoryScene.h"
+
 #define MY_BANNER_UNIT_ID @""
 
 
 @interface MainScene : CCScene
+
 {
+    
     
     GADBannerView * bannerView_;
     CCTextField * _countTeam;
@@ -105,14 +109,14 @@
     
     
     
-    double oneTemp;
-    double twoTemp;
-    double threeTemp;
-    double fourTemp;
-    double fiveTemp;
-    double sixTemp;
-    double sevenTemp;
-    double eightTemp;
+    float oneTemp;
+    float twoTemp;
+    float threeTemp;
+    float fourTemp;
+    float fiveTemp;
+    float sixTemp;
+    float sevenTemp;
+    float eightTemp;
     
     
     CCScrollView * _datailScrollView;
@@ -126,8 +130,16 @@
     CCParticleSystem * _ccp7;
     CCParticleSystem * _ccp8;
     
+    CCSprite * _bg;
+    CCSprite * _bg1;
+    
+    HistoryScene * history;
+    int nNumber;
+    
 }
 
 @property (nonatomic,strong) NSMutableArray * teamArray;
+@property (nonatomic,strong) NSMutableDictionary * bigDictionary;
+@property (nonatomic,strong) NSDate * date;
 
 @end

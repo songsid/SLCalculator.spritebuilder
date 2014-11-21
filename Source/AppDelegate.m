@@ -63,8 +63,32 @@
 {
     return [CCBReader loadAsScene:@"MainScene"];
 }
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    [self dismissAdView];
+    CCLOG(@"dismiss");
+    [[CCDirector sharedDirector] pause];
+    [[CCDirector sharedDirector] stopAnimation]; // Add
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [[CCDirector sharedDirector] resume];
+    [[CCDirector sharedDirector] startAnimation]; // Add
+}
+
+
+-(void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [self createAdmobAds];
+    [self showBannerView];
+    CCLOG(@"showad");
+}
+
+
 -(void)createAdmobAds
 {
+    
     mBannerType = BANNER_TYPE;
     
     if(mBannerType <= kBanner_Portrait_Bottom)
@@ -72,6 +96,9 @@
     else
         mBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerLandscape];
     
+    mBannerView.delegate = self;
+    
+    CCLOG(@"%@",mBannerView);
     // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
     
     mBannerView.adUnitID = ADMOB_BANNER_UNIT_ID;
@@ -83,14 +110,15 @@
     mBannerView.rootViewController = self.navController;
     [self.navController.view addSubview:mBannerView];
     
-    //#ifdef DEBUG
-    //    GADRequest *request = [GADRequest request];
-    //    request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID, nil];
-    //#endif
+    
+    //
+    GADRequest *request = [GADRequest request];
+    request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID, @"40b4bb0757184af4cd682f61473733a43bcadc1b",nil];
+    
     
     
     // Initiate a generic request to load it with an ad.
-    [mBannerView loadRequest:[GADRequest request]];
+    [mBannerView loadRequest:request];
     
     CGSize s = [[CCDirector sharedDirector] viewSize];
     
@@ -146,12 +174,15 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     
     frame = mBannerView.frame;
-    frame.origin.x = on_x;
-    frame.origin.y = on_y;
+    frame.origin.x = off_x;
+    frame.origin.y = off_y;
     
     
     mBannerView.frame = frame;
     [UIView commitAnimations];
+
+
+    CCLOG(@"createAD");
 }
 
 
@@ -181,6 +212,7 @@
                              completion:^(BOOL finished)
              {
              }];
+            CCLOG(@"show");
         }
         //Banner on top
         //        {
@@ -238,7 +270,7 @@
 {
     if (mBannerView)
     {
-        [UIView animateWithDuration:0.5
+        /*[UIView animateWithDuration:0.5
                               delay:0.1
                             options: UIViewAnimationCurveEaseOut
                          animations:^
@@ -250,13 +282,13 @@
              frame.origin.x = (s.width/2.0f - frame.size.width/2.0f);
              mBannerView.frame = frame;
          }
-                         completion:^(BOOL finished)
-         {
+                         completion:^(BOOL finished)*/
+        
              [mBannerView setDelegate:nil];
              [mBannerView removeFromSuperview];
              mBannerView = nil;
              
-         }];
+         
     }
 }
 @end
