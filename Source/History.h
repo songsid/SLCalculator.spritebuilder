@@ -22,6 +22,15 @@
     CCLabelTTF * _lottery;
     CCLabelTTF * _column;
     CCLabelTTF * _num;
+    
+    CCLabelTTF * _r1;
+    CCLabelTTF * _r2;
+    CCLabelTTF * _r3;
+    CCLabelTTF * _r4;
+    CCLabelTTF * _r5;
+    CCLabelTTF * _r6;
+    CCLabelTTF * _r7;
+    CCLabelTTF * _r8;
 }
 @property (nonatomic,strong) NSDictionary * historyDictionary;
 @property BOOL oneB;
@@ -32,6 +41,25 @@
 @property BOOL sixB;
 @property BOOL sevenB;
 @property BOOL eightB;
+
+@property BOOL rateA;
+@property BOOL rateB;
+@property BOOL rateC;
+@property BOOL rateD;
+@property BOOL rateE;
+@property BOOL rateF;
+@property BOOL rateG;
+@property BOOL rateH;
+
+@property float rateFloatA;
+@property float rateFloatB;
+@property float rateFloatC;
+@property float rateFloatD;
+@property float rateFloatE;
+@property float rateFloatF;
+@property float rateFloatG;
+@property float rateFloatH;
+
 @property (nonatomic,strong) NSString * bets;
 @property (nonatomic,strong) NSString * lotteryMoney;
 @property (nonatomic,strong) NSString * number;

@@ -22,8 +22,6 @@
 @interface MainScene : CCScene
 
 {
-    
-    
     GADBannerView * bannerView_;
     CCTextField * _countTeam;
     CCTextField * _countCount;
@@ -40,6 +38,8 @@
     CCButton * _lotteryDetailButton;
     CCButton * _howToUseButton;
     CCButton * _countStartButton;
+    CCButton * _historyButton;
+    CCButton * _selectOKButton;
     
     CCLabelTTF * _getLottery;
     
@@ -106,9 +106,7 @@
     double  gt;
     double  ht;
     
-    
-    
-    
+
     float oneTemp;
     float twoTemp;
     float threeTemp;
@@ -136,6 +134,7 @@
     HistoryScene * history;
     int nNumber;
     
+
 }
 
 @property (nonatomic,strong) NSMutableArray * teamArray;

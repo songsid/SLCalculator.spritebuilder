@@ -97,18 +97,179 @@
       
             if (numberCount+1 <12) {
                 History * historyCell = (History *)[CCBReader load:@"historyCell"];
-                historyCell.oneB = [self.historyDictionary[sr][@"P1"] length]-1;
+          /*      historyCell.oneB = [self.historyDictionary[sr][@"P1"] length]-1;
                 historyCell.twoB = [self.historyDictionary[sr][@"P2"] length]-1;
                 historyCell.threeB = [self.historyDictionary[sr][@"P3"] length]-1;
                 historyCell.fourB = [self.historyDictionary[sr][@"P4"] length]-1;
                 historyCell.fiveB = [self.historyDictionary[sr][@"P5"] length]-1;
                 historyCell.sixB = [self.historyDictionary[sr][@"P6"] length]-1;
                 historyCell.sevenB = [self.historyDictionary[sr][@"P7"] length]-1;
-                historyCell.eightB = [self.historyDictionary[sr][@"P8"] length]-1;
+                historyCell.eightB = [self.historyDictionary[sr][@"P8"] length]-1;*/
+                
+                historyCell.rateFloatA = [[NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"R1"]] floatValue];
+                historyCell.rateFloatB = [[NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"R2"]] floatValue];
+                historyCell.rateFloatC = [[NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"R3"]] floatValue];
+                historyCell.rateFloatD = [[NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"R4"]] floatValue];
+                historyCell.rateFloatE = [[NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"R5"]] floatValue];
+                historyCell.rateFloatF = [[NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"R6"]] floatValue];
+                historyCell.rateFloatG = [[NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"R7"]] floatValue];
+                historyCell.rateFloatH = [[NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"R8"]] floatValue];
+                
+                
                 historyCell.lotteryMoney = [NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"Winnings"]];
                 historyCell.bets = [NSString stringWithFormat:@"%@",self.historyDictionary[sr][@"bet"]];
                 historyCell.columnStr = [NSString stringWithFormat:@"%@X%@",self.historyDictionary[sr][@"m"],self.historyDictionary[sr][@"n"]];
                 historyCell.number = [NSString stringWithFormat:@"%ld",sac-[sr intValue]+1];
+                
+                
+                
+                
+                //小場數 大過關bool消掉
+                switch ([self.historyDictionary[sr][@"m"] intValue]) {
+                    case 2:
+                        historyCell.oneB = [self.historyDictionary[sr][@"P1"] length]-1;
+                        historyCell.twoB = [self.historyDictionary[sr][@"P2"] length]-1;
+                        historyCell.threeB = NO;
+                        historyCell.fourB = NO;
+                        historyCell.fiveB = NO;
+                        historyCell.sixB = NO;
+                        historyCell.sevenB = NO;
+                        historyCell.eightB = NO;
+
+                        historyCell.rateA = YES;
+                        historyCell.rateB = YES;
+                        historyCell.rateC = NO;
+                        historyCell.rateD = NO;
+                        historyCell.rateE = NO;
+                        historyCell.rateF = NO;
+                        historyCell.rateG = NO;
+                        historyCell.rateH = NO;
+                        break;
+                    case 3:
+                        historyCell.oneB = [self.historyDictionary[sr][@"P1"] length]-1;
+                        historyCell.twoB = [self.historyDictionary[sr][@"P2"] length]-1;
+                        historyCell.threeB = [self.historyDictionary[sr][@"P3"] length]-1;
+   
+                        historyCell.fourB = NO;
+                        historyCell.fiveB = NO;
+                        historyCell.sixB = NO;
+                        historyCell.sevenB = NO;
+                        historyCell.eightB = NO;
+                        
+                        historyCell.rateA = YES;
+                        historyCell.rateB = YES;
+                        historyCell.rateC = YES;
+                        historyCell.rateD = NO;
+                        historyCell.rateE = NO;
+                        historyCell.rateF = NO;
+                        historyCell.rateG = NO;
+                        historyCell.rateH = NO;
+
+                        break;
+                    case 4:
+                        historyCell.oneB = [self.historyDictionary[sr][@"P1"] length]-1;
+                        historyCell.twoB = [self.historyDictionary[sr][@"P2"] length]-1;
+                        historyCell.threeB = [self.historyDictionary[sr][@"P3"] length]-1;
+                        historyCell.fourB = [self.historyDictionary[sr][@"P4"] length]-1;
+
+                        historyCell.fiveB = NO;
+                        historyCell.sixB = NO;
+                        historyCell.sevenB = NO;
+                        historyCell.eightB = NO;
+                        
+                        historyCell.rateA = YES;
+                        historyCell.rateB = YES;
+                        historyCell.rateC = YES;
+                        historyCell.rateD = YES;
+                        historyCell.rateE = NO;
+                        historyCell.rateF = NO;
+                        historyCell.rateG = NO;
+                        historyCell.rateH = NO;
+                        break;
+                    case 5:
+                        historyCell.oneB = [self.historyDictionary[sr][@"P1"] length]-1;
+                        historyCell.twoB = [self.historyDictionary[sr][@"P2"] length]-1;
+                        historyCell.threeB = [self.historyDictionary[sr][@"P3"] length]-1;
+                        historyCell.fourB = [self.historyDictionary[sr][@"P4"] length]-1;
+                        historyCell.fiveB = [self.historyDictionary[sr][@"P5"] length]-1;
+
+                        historyCell.sixB = NO;
+                        historyCell.sevenB = NO;
+                        historyCell.eightB = NO;
+                        
+                        historyCell.rateA = YES;
+                        historyCell.rateB = YES;
+                        historyCell.rateC = YES;
+                        historyCell.rateD = YES;
+                        historyCell.rateE = YES;
+                        historyCell.rateF = NO;
+                        historyCell.rateG = NO;
+                        historyCell.rateH = NO;
+                        break;
+                    case 6:
+                        historyCell.oneB = [self.historyDictionary[sr][@"P1"] length]-1;
+                        historyCell.twoB = [self.historyDictionary[sr][@"P2"] length]-1;
+                        historyCell.threeB = [self.historyDictionary[sr][@"P3"] length]-1;
+                        historyCell.fourB = [self.historyDictionary[sr][@"P4"] length]-1;
+                        historyCell.fiveB = [self.historyDictionary[sr][@"P5"] length]-1;
+                        historyCell.sixB = [self.historyDictionary[sr][@"P6"] length]-1;
+                        historyCell.sevenB = NO;
+                        historyCell.eightB = NO;
+                        
+                        historyCell.rateA = YES;
+                        historyCell.rateB = YES;
+                        historyCell.rateC = YES;
+                        historyCell.rateD = YES;
+                        historyCell.rateE = YES;
+                        historyCell.rateF = YES;
+                        historyCell.rateG = NO;
+                        historyCell.rateH = NO;
+                        break;
+                    case 7:
+                        historyCell.oneB = [self.historyDictionary[sr][@"P1"] length]-1;
+                        historyCell.twoB = [self.historyDictionary[sr][@"P2"] length]-1;
+                        historyCell.threeB = [self.historyDictionary[sr][@"P3"] length]-1;
+                        historyCell.fourB = [self.historyDictionary[sr][@"P4"] length]-1;
+                        historyCell.fiveB = [self.historyDictionary[sr][@"P5"] length]-1;
+                        historyCell.sixB = [self.historyDictionary[sr][@"P6"] length]-1;
+                        historyCell.sevenB = [self.historyDictionary[sr][@"P7"] length]-1;
+                        historyCell.eightB = NO;
+                        
+                        historyCell.rateA = YES;
+                        historyCell.rateB = YES;
+                        historyCell.rateC = YES;
+                        historyCell.rateD = YES;
+                        historyCell.rateE = YES;
+                        historyCell.rateF = YES;
+                        historyCell.rateG = YES;
+                        historyCell.rateH = NO;
+                        break;
+                        
+                    case 8:
+                        historyCell.oneB = [self.historyDictionary[sr][@"P1"] length]-1;
+                        historyCell.twoB = [self.historyDictionary[sr][@"P2"] length]-1;
+                        historyCell.threeB = [self.historyDictionary[sr][@"P3"] length]-1;
+                        historyCell.fourB = [self.historyDictionary[sr][@"P4"] length]-1;
+                        historyCell.fiveB = [self.historyDictionary[sr][@"P5"] length]-1;
+                        historyCell.sixB = [self.historyDictionary[sr][@"P6"] length]-1;
+                        historyCell.sevenB = [self.historyDictionary[sr][@"P7"] length]-1;
+                        historyCell.eightB = [self.historyDictionary[sr][@"P8"] length]-1;
+                        
+                        historyCell.rateA = YES;
+                        historyCell.rateB = YES;
+                        historyCell.rateC = YES;
+                        historyCell.rateD = YES;
+                        historyCell.rateE = YES;
+                        historyCell.rateF = YES;
+                        historyCell.rateG = YES;
+                        historyCell.rateH = YES;
+
+                        break;
+                    default:
+                        break;
+                }
+                
+                
                 [historyCell renew];
                 
                 [self addChild:historyCell];

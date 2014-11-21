@@ -92,7 +92,7 @@
         _GTeam.visible = YES;
         
         
-        [self blockTextField:NO];
+        [self tutorialButton:NO];
         _howToUseButton.enabled = NO;
         _selecetMButton.enabled = NO;
         _selecetNButton.enabled = NO;
@@ -126,27 +126,36 @@
     if (_next.visible) {
         switch (tutorialInt) {
             case 0:
+                [self tutorialButton:NO];
+
                 _next.visible = NO;
                 tutorialInt +=1;
                 [self.userObject runAnimationsForSequenceNamed:@"First0_1"];
+                [self tutorialButton:NO];
+
                 break;
             case 1:
+
                 _next.visible = NO;
                 tutorialInt +=1;
                 [self.userObject runAnimationsForSequenceNamed:@"First1"];
-                [self gameXinv:NO];//game xx button enable == no
+                [self tutorialButton:NO];
+
+                //[self gameXinv:NO];//game xx button enable == no
                 break;
             case 2:
+                [self tutorialButton:NO];
+
                 _next.visible = NO;
                 _next.string = @"開始使用\n>>>";
                 tutorialInt +=1;
                 [self.userObject runAnimationsForSequenceNamed:@"First2"];
+                [self tutorialButton:NO];
                 break;
             case 3:
                 [self.userObject runAnimationsForSequenceNamed:@"Default"];
-                [self blockTextField:YES];
-                _selecetNButton.enabled = YES;
-                _selecetMButton.enabled = YES;
+              //  [self blockTextField:YES];
+
                 _ATeam.visible = NO;
                 _BTeam.visible = NO;
                 _CTeam.visible = NO;
@@ -155,10 +164,9 @@
                 _FTeam.visible = NO;
                 _GTeam.visible = NO;
                 _HTeam.visible = NO;
-                _countStartButton.enabled = YES;
-                _howToUseButton.enabled = YES;
-                
-                [self gameXinv:YES];
+
+                [self tutorialButton:YES];
+                //[self gameXinv:YES];
                 
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Tutorial"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
@@ -172,6 +180,39 @@
                 break;
         }
     }
+}
+
+-(void) tutorialButton :(BOOL) enable
+{
+    CCLOG(@"tt1");
+    [_ATeam setEnabled:enable];
+    [_ATeam setEnabled:enable];
+    [_ATeam setEnabled:enable];
+    [_ATeam setEnabled:enable];
+    [_ATeam setEnabled:enable];
+    [_ATeam setEnabled:enable];
+    [_ATeam setEnabled:enable];
+    [_ATeam setEnabled:enable];
+    _countTeam.enabled = enable;
+    _countCount.enabled = enable;
+    _lottery.enabled = enable;
+    _lotteryDetailButton.enabled = enable;
+    _howToUseButton.enabled = enable;
+    _countStartButton.enabled = enable;
+    _selecetMButton.enabled = enable;
+    _selecetNButton.enabled = enable;
+    _gameOneNil.enabled = enable;
+    _gameTwoNil.enabled = enable;
+    _gameThreeNil.enabled = enable;
+    _gameFourNil.enabled = enable;
+    _gameFiveNil.enabled = enable;
+    _gameSixNil.enabled = enable;
+    _gameSevenNil.enabled = enable;
+    _gameEightNil.enabled = enable;
+    _historyButton.enabled = enable;
+    _selectMN.enabled = enable;
+    _selectOKButton.enabled = enable;
+        CCLOG(@"tt2");
 }
 
 -(void) selectMN: (id)sender
@@ -587,8 +628,8 @@
     if ([_getLottery.string floatValue]>0) {
         
     NSDictionary * dict = [[NSDictionary alloc]init];
-        dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@",_getLottery.string],@"Winnings", [NSString stringWithFormat:@"%d",m],@"m", [NSString stringWithFormat:@"%d",nNumber], @"n",(Bsingle ? @"過一關" : @" "),@"P1",(Btwo ? @"過兩關" : @" "),@"P2",(Bthree ? @"過三關" : @" "),@"P3",(Bfour ? @"過四關" : @" "),@"P4",(Bfive ? @"過五關" : @" "),@"P5",(Bsix ? @"過六關" : @" "),@"P6",(Bseven ? @"過七關" : @" "),@"P7",(Beight ? @"過八關" : @" "),@"P8", [NSString stringWithFormat:@"%d",[_lottery.string intValue] * nNumber * 10],@"bet", nil];
-
+        dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@",_getLottery.string],@"Winnings", [NSString stringWithFormat:@"%d",m],@"m", [NSString stringWithFormat:@"%d",nNumber], @"n",(Bsingle ? @"過一關" : @" "),@"P1",(Btwo ? @"過兩關" : @" "),@"P2",(Bthree ? @"過三關" : @" "),@"P3",(Bfour ? @"過四關" : @" "),@"P4",(Bfive ? @"過五關" : @" "),@"P5",(Bsix ? @"過六關" : @" "),@"P6",(Bseven ? @"過七關" : @" "),@"P7",(Beight ? @"過八關" : @" "),@"P8", [NSString stringWithFormat:@"%d",[_lottery.string intValue] * nNumber * 10],@"bet",[NSString stringWithFormat:@"%@",_ATeam.string] ,@"R1" ,[NSString stringWithFormat:@"%@",_BTeam.string] ,@"R2" , [NSString stringWithFormat:@"%@",_CTeam.string],@"R3" , [NSString stringWithFormat:@"%@",_DTeam.string],@"R4"  , [NSString stringWithFormat:@"%@",_ETeam.string],@"R5" ,[NSString stringWithFormat:@"%@",_FTeam.string] ,@"R6",[NSString stringWithFormat:@"%@",_GTeam.string],@"R7",[NSString stringWithFormat:@"%@",_HTeam.string],@"R8" ,nil];
+        
         
     NSLog(@"%@",dict[@"Winnings"]);
     NSLog(@"%@",dict[@"m"]);
@@ -1186,7 +1227,7 @@
     
 }
 
--(void) closeDetail :(id) sender
+-(void) closeDetail
 {
     if (![[self.userObject runningSequenceName]isEqualToString:@"Down"]) {
         CCLOG(@"run down");
