@@ -46,16 +46,32 @@
         [UIScreen mainScreen].currentMode = [UIScreenMode emulatedMode:UIScreenScaledAspectFitEmulationMode];
 #endif
     
+    
     // Configure CCFileUtils to work with SpriteBuilder
     [CCBReader configureCCFileUtils];
     
     // Do any extra configuration of Cocos2d here (the example line changes the pixel format for faster rendering, but with less colors)
     //[cocos2dSetup setObject:kEAGLColorFormatRGB565 forKey:CCConfigPixelFormat];
     
+#pragma ADID
+    NSURL * idURL = [NSURL URLWithString:@"http://sidsong.myweb.hinet.net/ADID/id.xml"];
+    NSXMLParser * idPaser = [[NSXMLParser alloc]initWithContentsOfURL:idURL];
+    [idPaser setDelegate : self ] ;
+    BOOL flag = [idPaser parse];
+    if (flag) {
+        NSLog(@"got ID");
+    }else NSLog(@"not got ID");
+    
+
+    
+    
+    
+    
     [self setupCocos2dWithOptions:cocos2dSetup];
     if ([[NSUserDefaults standardUserDefaults]boolForKey:@"Tutorial"] == YES){
         CCLOG(@"createAD");
-        [self createAdmobAds];}
+        [self createAdmobAds];
+    }
     return YES;
 }
 
@@ -65,10 +81,12 @@
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Tutorial"]) {
     [self dismissAdView];
     CCLOG(@"dismiss");
     [[CCDirector sharedDirector] pause];
     [[CCDirector sharedDirector] stopAnimation]; // Add
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -80,9 +98,11 @@
 
 -(void)applicationDidBecomeActive:(UIApplication *)application
 {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Tutorial"]) {
     [self createAdmobAds];
     [self showBannerView];
     CCLOG(@"showad");
+    }
 }
 
 
@@ -291,4 +311,17 @@
          
     }
 }
+
+
+
+
+-(void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+    NSLog(@"fc , %@",string);
+    ADMOB_BANNER_UNIT_ID = string;
+    NSLog(@"ADMOB = %@",ADMOB_BANNER_UNIT_ID);
+}
+
+
+
 @end

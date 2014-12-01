@@ -19,7 +19,7 @@
 			<key>translations</key>
 			<dict>
 				<key>en</key>
-				<string>Game </string>
+				<string>Events</string>
 				<key>zh-Hant</key>
 				<string>選取場數</string>
 			</dict>
@@ -52,7 +52,7 @@
 			<key>translations</key>
 			<dict>
 				<key>en</key>
-				<string>Games	</string>
+				<string>Pass	</string>
 				<key>zh-Hant</key>
 				<string>選取組數</string>
 			</dict>
@@ -65,7 +65,7 @@
 			<key>translations</key>
 			<dict>
 				<key>en</key>
-				<string>Key in game rate</string>
+				<string>Input odds</string>
 				<key>zh-Hant</key>
 				<string>輸入單場賽事賠率
 若購買六場則輸入六項賠率
@@ -177,7 +177,7 @@
 			<key>translations</key>
 			<dict>
 				<key>en</key>
-				<string>  Game Rate</string>
+				<string>  Odds</string>
 				<key>zh-Hant</key>
 				<string>      場次賠率</string>
 			</dict>
@@ -243,7 +243,7 @@
 			<key>translations</key>
 			<dict>
 				<key>en</key>
-				<string>Select </string>
+				<string>System</string>
 				<key>zh-Hant</key>
 				<string>請選擇比賽場數</string>
 			</dict>
@@ -344,6 +344,105 @@ Select System to input details</string>
 				<key>zh-Hant</key>
 				<string>選擇組數 
 再選擇場數</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>下注金額：</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Stake:</string>
+				<key>zh-Hant</key>
+				<string>下注金額：</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>過關組合：</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Column:</string>
+				<key>zh-Hant</key>
+				<string>過關組合：</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>預估總彩金：</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Winnings:</string>
+				<key>zh-Hant</key>
+				<string>預估總彩金：</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>歷史紀錄</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Record</string>
+				<key>zh-Hant</key>
+				<string>歷史紀錄</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string></string>
+			<key>key</key>
+			<string>計算僅供參考
+實際派彩請至
+台灣彩券官方網站</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Calculation for reference only,
+The actual payout
+please confirm on the 
+official website of 
+Taiwan Sport Lottery.</string>
+				<key>zh-Hant</key>
+				<string>計算僅供參考
+實際派彩請至
+台灣彩券官方網站
+
+祝您中獎~</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>使用說明
+
+1.  點選”選擇組合”
+2.  選擇”選取場數”
+3.  輸入”下注金額”
+4.  輸入  場次賠率
+若沒過則按左方的x
+5.  點選”開始計算”</string>
+			<key>translations</key>
+			<dict>
+				<key>en</key>
+				<string>Instructions
+
+1.Select”System”
+2.Select”Events”
+3.Select“Pass”
+4.Input“Odds”
+5.”Star Counting!”</string>
+				<key>zh-Hant</key>
+				<string>使用說明
+
+1.  點選 ”選擇組合”
+2.  選擇 ”選取場數”
+3. 複選過關數
+4.  輸入”下注金額”
+5.  輸入  場次賠率
+試算未過關則按左方的x
+6.  點選 ”開始計算”</string>
 			</dict>
 		</dict>
 	</array>

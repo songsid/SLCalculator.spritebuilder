@@ -27,7 +27,7 @@
     if (!_historyDictionary) {
         if (![[NSUserDefaults standardUserDefaults]objectForKey:@"Dictionary"]) {
             _historyDictionary = [[NSMutableDictionary alloc]init];
-        }else _historyDictionary = [[NSUserDefaults standardUserDefaults ]objectForKey:@"Dictionary"];
+        }else _historyDictionary = [[[NSUserDefaults standardUserDefaults ]objectForKey:@"Dictionary"] mutableCopy];
     }
     return _historyDictionary;
 }

@@ -25,12 +25,11 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
-#define ADMOB_BANNER_UNIT_ID  @"ca-app-pub-3220218286970274/2593844541"
+//#define ADMOB_BANNER_UNIT_ID  @"ca-app-pub-5217834109182980/1524506158"
 
 
 //((IS_IPAD) ? @"a1526954f69b314"  : @"a1526955dc20272" );
 
-//@"ca-app-pub-3220218286970274/2593844541"
 
 //
 
@@ -51,8 +50,9 @@ typedef enum _bannerType
 
 #define BANNER_TYPE ((IS_IPAD) ? kBanner_IPad_Portrait_Bottom : kBanner_Portrait_Bottom );
 
-@interface AppController : CCAppDelegate <GADBannerViewDelegate>
+@interface AppController : CCAppDelegate <GADBannerViewDelegate,NSXMLParserDelegate>
 {
+    NSString * ADMOB_BANNER_UNIT_ID;
     CocosBannerType mBannerType;
     GADBannerView *mBannerView;
     float on_x, on_y, off_x, off_y;

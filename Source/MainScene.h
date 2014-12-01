@@ -10,7 +10,7 @@
 
 
 
-
+#import <StoreKit/StoreKit.h>
 #import "CCNode.h"
 #import "GADBannerView.h"
 #import "AppDelegate.h"
@@ -19,7 +19,7 @@
 #define MY_BANNER_UNIT_ID @""
 
 
-@interface MainScene : CCScene
+@interface MainScene : CCScene <SKStoreProductViewControllerDelegate>
 
 {
     GADBannerView * bannerView_;
@@ -34,7 +34,15 @@
     CCTextField * _FTeam;
     CCTextField * _GTeam;
     CCTextField * _HTeam;
-    
+    CCLabelTTF * _tutorialLabel;
+    CCLabelTTF * _tutorialLabel1;
+    CCLabelTTF * _tutorialLabel2;
+    CCLabelTTF * _tutorialLabel3;
+    CCLabelTTF * _tutorialLabel4;
+    CCLabelTTF * _tutorialLabel5;
+    CCLabelTTF * _tutorialLabel6;
+    CCLabelTTF * _tutorialLabel7;
+    CCLabelTTF * _tutorialLabel8;
     CCButton * _lotteryDetailButton;
     CCButton * _howToUseButton;
     CCButton * _countStartButton;
@@ -134,11 +142,13 @@
     HistoryScene * history;
     int nNumber;
     
+    BOOL isIP6P;
 
 }
 
 @property (nonatomic,strong) NSMutableArray * teamArray;
 @property (nonatomic,strong) NSMutableDictionary * bigDictionary;
 @property (nonatomic,strong) NSDate * date;
+//@property (nonatomic,strong) id<SKStoreProductViewControllerDelegate> skDelegate;
 
 @end

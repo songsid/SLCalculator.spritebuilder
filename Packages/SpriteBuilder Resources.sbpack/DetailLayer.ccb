@@ -409,7 +409,7 @@
 							<string>計算僅供參考
 實際派彩請至
 台灣彩券官方網站</string>
-							<false/>
+							<true/>
 						</array>
 					</dict>
 					<dict>
@@ -858,7 +858,7 @@ Sid.Song
 4.  輸入  場次賠率
 若沒過則按左方的x
 5.  點選”開始計算”</string>
-							<false/>
+							<true/>
 						</array>
 					</dict>
 					<dict>

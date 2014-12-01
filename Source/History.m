@@ -44,9 +44,9 @@
     _r8.string =[NSString stringWithFormat:@"%.2f",_rateFloatH];
 
     
-    _lottery.string = [NSString stringWithFormat:@"預估總彩金：%@",_lotteryMoney];
-    _bet.string  = [NSString stringWithFormat:@"下注金額：%@",_bets];
-    _column.string = [NSString stringWithFormat:@"過關組合：%@",_columnStr];
+    _lottery.string = [NSString stringWithFormat:@"%@",_lotteryMoney];
+    _bet.string  = [NSString stringWithFormat:@"%@",_bets];
+    _column.string = [NSString stringWithFormat:@"%@",_columnStr];
     _num.string = [NSString stringWithFormat:@"%@.",_number];
     
 }

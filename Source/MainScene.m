@@ -24,7 +24,7 @@
     if (!_bigDictionary) {
         if (![[NSUserDefaults standardUserDefaults]objectForKey:@"Dictionary"]) {
             _bigDictionary = [[NSMutableDictionary alloc]init];
-        }else _bigDictionary = [[NSUserDefaults standardUserDefaults ]objectForKey:@"Dictionary"];
+        }else _bigDictionary = [[[NSUserDefaults standardUserDefaults ]objectForKey:@"Dictionary"] mutableCopy];
     }
     
     return _bigDictionary;
@@ -32,6 +32,28 @@
 -(void) didLoadFromCCB
 {
 
+    UIScreen * mainScreen = [UIScreen mainScreen];
+    if (mainScreen.nativeScale>2.9) {
+        isIP6P = true;
+        _ATeam.fontSize = 12;
+
+        _BTeam.fontSize = 12;
+        _CTeam.fontSize = 12;
+        _DTeam.fontSize = 12;
+        _ETeam.fontSize = 12;
+        _FTeam.fontSize = 12;
+        _GTeam.fontSize = 12;
+        _HTeam.fontSize = 12;
+        _lottery.fontSize = 12;
+
+
+        CCLOG(@"ip6++");
+        
+    }else isIP6P = false;
+    CCLOG(@"height = %f",[CCDirector sharedDirector].view.bounds.size.height);
+    
+    NSLog(@"Screen bounds: %@, Screen resolution: %@, scale: %f, nativeScale: %f",
+          NSStringFromCGRect(mainScreen.bounds), mainScreen.coordinateSpace, mainScreen.scale, mainScreen.nativeScale);
     
     self.userInteractionEnabled = YES;
     
@@ -82,14 +104,14 @@
     if  (![[NSUserDefaults standardUserDefaults] boolForKey:@"Tutorial"])
     {
 
-        _ATeam.visible = YES;
-        _BTeam.visible = YES;
-        _CTeam.visible = YES;
-        _DTeam.visible = YES;
-        _ETeam.visible = YES;
-        _FTeam.visible = YES;
-        _HTeam.visible = YES;
-        _GTeam.visible = YES;
+        _ATeam.visible = NO;
+        _BTeam.visible = NO;
+        _CTeam.visible = NO;
+        _DTeam.visible = NO;
+        _ETeam.visible = NO;
+        _FTeam.visible = NO;
+        _HTeam.visible = NO;
+        _GTeam.visible = NO;
         
         
         [self tutorialButton:NO];
@@ -104,8 +126,13 @@
         } delay:1];
 
     };
+    [self scheduleBlock:^(CCTimer *timer) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Tutorial"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"hasRated"]) {
+            [self storeAlertView];
+        }
+    } delay:5];
     
-
+    
 }
 
 -(void) history
@@ -147,7 +174,7 @@
                 [self tutorialButton:NO];
 
                 _next.visible = NO;
-                _next.string = @"開始使用\n>>>";
+                _next.string = @">>>";
                 tutorialInt +=1;
                 [self.userObject runAnimationsForSequenceNamed:@"First2"];
                 [self tutorialButton:NO];
@@ -155,6 +182,7 @@
             case 3:
                 [self.userObject runAnimationsForSequenceNamed:@"Default"];
               //  [self blockTextField:YES];
+                [self tutorialButton:YES];
 
                 _ATeam.visible = NO;
                 _BTeam.visible = NO;
@@ -165,7 +193,6 @@
                 _GTeam.visible = NO;
                 _HTeam.visible = NO;
 
-                [self tutorialButton:YES];
                 //[self gameXinv:YES];
                 
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Tutorial"];
@@ -173,6 +200,7 @@
             
             /// create Ad !!!!
                 [self createAd];
+                [self showAd];
             ///
                 
                 break;
@@ -185,14 +213,16 @@
 -(void) tutorialButton :(BOOL) enable
 {
     CCLOG(@"tt1");
-    [_ATeam setEnabled:enable];
-    [_ATeam setEnabled:enable];
-    [_ATeam setEnabled:enable];
-    [_ATeam setEnabled:enable];
-    [_ATeam setEnabled:enable];
-    [_ATeam setEnabled:enable];
-    [_ATeam setEnabled:enable];
-    [_ATeam setEnabled:enable];
+
+    _tutorialLabel.visible = !enable;
+    _tutorialLabel1.visible = !enable;
+    _tutorialLabel2.visible = !enable;
+    _tutorialLabel3.visible = !enable;
+    _tutorialLabel4.visible = !enable;
+    _tutorialLabel5.visible = !enable;
+    _tutorialLabel6.visible = !enable;
+    _tutorialLabel7.visible = !enable;
+    _tutorialLabel8.visible = !enable;
     _countTeam.enabled = enable;
     _countCount.enabled = enable;
     _lottery.enabled = enable;
@@ -213,6 +243,28 @@
     _selectMN.enabled = enable;
     _selectOKButton.enabled = enable;
         CCLOG(@"tt2");
+    _lottery.visible = enable;
+    _ATeam.visible = enable;
+    _BTeam.visible = enable;
+    _CTeam.visible = enable;
+    _DTeam.visible = enable;
+    _ETeam.visible = enable;
+    _FTeam.visible = enable;
+    _GTeam.visible = enable;
+    _HTeam.visible = enable;
+   /* _ATeam.userInteractionEnabled = enable;
+    _BTeam.userInteractionEnabled = enable;
+    _CTeam.userInteractionEnabled = enable;
+    _DTeam.userInteractionEnabled = enable;
+    _ETeam.userInteractionEnabled = enable;
+    _FTeam.userInteractionEnabled = enable;
+    _GTeam.userInteractionEnabled = enable;
+    _HTeam.userInteractionEnabled = enable;
+    
+    _countTeam.userInteractionEnabled = enable;
+    _countCount.userInteractionEnabled = enable;
+    _lottery.userInteractionEnabled = enable;*/
+    
 }
 
 -(void) selectMN: (id)sender
@@ -674,7 +726,7 @@
             NSLog(@"5");
     }
                 NSLog(@"6");
-                NSLog(@"dictionarycount %ld" ,[sa count]);
+                NSLog(@"dictionarycount %ld" ,(unsigned long)[sa count]);
     }
 
 }
@@ -1430,5 +1482,71 @@
     ///
 }
 
+#pragma appstore
+
+- (void) storeAlertView {
+    // ask to confirm re-dealing
+    NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
+    NSArray* languages = [defs objectForKey:@"AppleLanguages"];
+    NSString* preferredLang = [languages objectAtIndex:0];
+
+    if ([preferredLang isEqualToString:@"zh"]) {
+        
+
+    UIAlertView *warning = [[UIAlertView alloc] initWithTitle:@"運彩計算機"
+                                                      message:@"覺得好用嗎？幫我們評價吧"
+                                                     delegate:self
+                                            cancelButtonTitle:@"不了"
+                                            otherButtonTitles:@"前往評價", nil];
+    [warning show];
+    }else{
+        
+        UIAlertView *warning = [[UIAlertView alloc] initWithTitle:@"Sport Lottery Calculator"
+                                                          message:@"Like this app? Please rate in the App Store!"
+                                                         delegate:self
+                                                cancelButtonTitle:@"No"
+                                                otherButtonTitles:@"Yes", nil];
+        [warning show];
+    }
+}
+
+// handle alert view confirmation
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"前往評價"]) {
+        [self openAppStore];
+    }
+}
+
+
+-(void)  openAppStore
+{
+    
+  //  AppController * app = (AppController * )[[UIApplication sharedApplication] delegate];
+    
+    
+    SKStoreProductViewController  *storeProductViewController  =  [[SKStoreProductViewController  alloc]  init];
+    storeProductViewController.delegate =self;    
+    [storeProductViewController  loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:@"923922187"} completionBlock:^(BOOL  result,  NSError  *error)  {
+        if  (error)  {
+            NSLog(@"Error  %@  with  User  Info  %@.",  error,  [error  userInfo]);
+        }  else  {
+            //  Present  Store  Product  View  Controller
+
+            [[CCDirector sharedDirector] presentViewController:storeProductViewController  animated:YES  completion:^{
+                        CCLOG(@"present");
+                [[NSUserDefaults  standardUserDefaults]  setBool:YES  forKey:@"hasRated"];
+                [[NSUserDefaults  standardUserDefaults]  synchronize];
+            }];
+        }
+    }];
+}
+
+-(void) productViewControllerDidFinish:(SKStoreProductViewController *) ViewController{
+    if (ViewController)
+    {
+        CCLOG(@"dismiss");
+        [[CCDirector sharedDirector] dismissViewControllerAnimated:YES completion:nil];
+    }
+}
 
 @end

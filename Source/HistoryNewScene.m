@@ -12,8 +12,6 @@
 
 -(void) didLoadFromCCB
 {
-    
-    
     self.userInteractionEnabled = YES;
     
     //initial setting
